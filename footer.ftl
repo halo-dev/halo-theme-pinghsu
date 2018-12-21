@@ -1,22 +1,20 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-
 <footer id="footer" class="footer <?php if (array_key_exists('archive',unserialize($this->___fields()))): ?>bg-white<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'defaultColor')): ?>bg-white<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'customColor')): ?>bg-grey<?php elseif($this->is('single')): ?>bg-white<?php endif; ?>">
 	<div class="footer-social">
 		<div class="footer-container clearfix">
 			<div class="social-list">
-			<?php if ($this->options->socialweibo): ?>
-				<a class="social weibo" target="blank" href="<?php $this->options->socialweibo(); ?>">WEIBO</a>
-			<?php endif; ?>
-            <?php if ($this->options->socialzhihu): ?>
-                <a class="social zhihu" target="blank" href="<?php $this->options->socialzhihu(); ?>">ZHIHU</a>
-            <?php endif; ?>
-                <a class="social rss" target="blank" href="<?php $this->options->siteUrl(); ?>feed/">RSS</a>
-			<?php if ($this->options->socialgithub): ?>
-				<a class="social github" target="blank" href="<?php $this->options->socialgithub(); ?>">GITHUB</a>
-			<?php endif; ?>
-			<?php if ($this->options->socialtwitter): ?>
-				<a class="social twitter" target="blank" href="<?php $this->options->socialtwitter(); ?>">TWITTER</a>
-			<?php endif; ?>
+                <#if options.pinghsu_sns_weibo??>
+                    <a class="social weibo" target="blank" href="${options.pinghsu_sns_weibo!}">WEIBO</a>
+                </#if>
+                <#if options.pinghsu_sns_zhihu??>
+                    <a class="social zhihu" target="blank" href="${options.pinghsu_sns_zhihu!}">ZHIHU</a>
+                </#if>
+                    <a class="social rss" target="blank" href="${options.blog_url!}/feed/">RSS</a>
+                <#if options.pinghsu_sns_github??>
+				    <a class="social github" target="blank" href="${options.pinghsu_sns_github!}">GITHUB</a>
+                </#if>
+                <#if options.pinghsu_sns_twitter??>
+                    <a class="social twitter" target="blank" href="${options.pinghsu_sns_twitter!}">TWITTER</a>
+                </#if>
 			</div>
 		</div>
 	</div>
@@ -24,17 +22,17 @@
 		<div class="footer-container">
 			<div class="meta-item meta-copyright">
 				<div class="meta-copyright-info">
-                    <a href="<?php $this->options->siteUrl(); ?>" class="info-logo">
-                        <?php if($this->options->footerLogoUrl): ?>
-                        <img src="<?php $this->options->footerLogoUrl();?>" alt="<?php $this->options->title() ?>" />
-                        <?php else : ?>
-                        <?php $this->options->title() ?>
-                        <?php endif; ?>
+                    <a href="${options.blog_url!}" class="info-logo">
+                        <#if options.pinghsu_general_footer_logo??>
+                        <img src="${options.pinghsu_general_footer_logo}" alt="${options.blog_title!}" />
+                        <#else>
+                        ${options.blog_title!}
+                        </#if>
                     </a>
 					<div class="info-text">
                     	<p>Theme is <a href="https://github.com/chakhsu/pinghsu" target="_blank">Pinghsu</a> by <a href="https://www.linpx.com/" target="_blank">Chakhsu</a></p>
-						<p>Powered by <a href="http://www.typecho.org" target="_blank" rel="nofollow">Typecho</a></p>
-						<p>&copy; <?php echo date('Y'); ?> <a href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title(); ?></a></p>
+						<p>Powered by <a href="https://github.com/ruibaby/halo" target="_blank" rel="nofollow">Halo</a></p>
+						<p>&copy; ${.now?string["yyyy"]} <a href="${options.blog_url!}">${options.blog_title!}</a></p>
 					</div>
 				</div>
 			</div>
@@ -227,22 +225,30 @@ addCommentInputValue();
 <?php endif; ?>
 <?php $this->footer(); ?>
 <script src="//cdn.bootcss.com/headroom/0.9.1/headroom.min.js"></script>
-<?php if ($this->options->useHighline == 'able'): ?>
+
+<#if (options.pinghsu_style_post_highlight!'false') == 'true'>
 <script src="//cdn.bootcss.com/highlight.js/9.10.0/highlight.min.js"></script>
-<?php endif; ?>
-<?php if ($this->options->pjaxSet == 'able'): ?>
-<script src="<?php $this->options->themeUrl('js/instantclick.min.js?v20140319'); ?>"></script>
-<?php endif; ?>
-<?php if ($this->options->fastClickSet == 'able'): ?>
+</#if>
+
+
+<#if (options.pinghsu_general_pjax!'false') == 'true'>
+<script src="/${themeName}/source/js/instantclick.min.js?v20140319"></script>
+</#if>
+
+<#if (options.pinghsu_general_fast_click!'false') == 'true'>
 <script src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
-<?php endif; ?>
+</#if>
+
 <script>
-<?php if (($this->options->tableOfContents == 'able') && ($this->is('post'))): ?>
+
+<#if (options.pinghsu_style_post_toc!'false') == 'true' && post??>
 var postDirectory = new Headroom(document.getElementById("directory-content"), {
     tolerance: 0,
-    <?php if ($this->options->postshowthumb == 'able'): ?>
-    offset : 280,<?php else: ?>
-    offset : 90,<?php endif; ?>
+    <#if (options.pinghsu_style_post_picture!'false') == 'true'>
+    offset : 280,
+    <#else>
+    offset : 90,
+    </#if>
     classes: {
         initial: "initial",
         pinned: "pinned",
@@ -250,8 +256,9 @@ var postDirectory = new Headroom(document.getElementById("directory-content"), {
     }
 });
 postDirectory.init();
-<?php endif; ?>
-<?php if($this->is('post')): ?>
+</#if>
+
+<#if post??>
 var postSharer = new Headroom(document.getElementById("post-bottom-bar"), {
     tolerance: 0,
     offset : 70,
@@ -262,7 +269,8 @@ var postSharer = new Headroom(document.getElementById("post-bottom-bar"), {
     }
 });
 postSharer.init();
-<?php endif; ?>
+</#if>
+
 var header = new Headroom(document.getElementById("header"), {
     tolerance: 0,
     offset : 70,
@@ -273,18 +281,21 @@ var header = new Headroom(document.getElementById("header"), {
     }
 });
 header.init();
-<?php if (($this->options->pjaxSet == 'disable') && ($this->options->useHighline == 'able') && ($this->is('post'))): ?>
+
+<#if ((options.pinghsu_general_pjax!'false') == 'true') && ((options.pinghsu_style_post_highlight!'false') == 'true') && post??>
 hljs.initHighlightingOnLoad();
-<?php endif; ?>
-<?php if ($this->options->fastClickSet == 'able'): ?>
+</#if>
+
+<#if (options.pinghsu_general_fast_click!'false') == 'true'>
 if ('addEventListener' in document) {
     document.addEventListener('DOMContentLoaded', function() {
         FastClick.attach(document.body);
     }, false);
 }
-<?php endif; ?>
+</#if>
 </script>
-<?php if ($this->options->useMathjax == 'able'): ?>
+
+<#if (options.pinghsu_style_post_mathjax!'false') == 'true'>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     showProcessingMessages: false,
@@ -305,34 +316,28 @@ MathJax.Hub.Config({
 MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 </script>
 <script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<?php endif; ?>
-<?php if($this->options->GoogleAnalytics): ?>
-<script>
-<?php $this->options->GoogleAnalytics(); ?>
-</script>
-<?php endif; ?>
-<?php if ($this->options->pjaxSet == 'able'): ?>
+</#if>
+
+<#-- 统计代码 -->
+
+<#if (options.pinghsu_general_pjax!'false')=='true'>
 <script data-no-instant>
 InstantClick.on('change', function(isInitialLoad){
-    <?php if ($this->options->useHighline == 'able'): ?>
+    <#if (options.pinghsu_style_post_highlight!'false') == 'true'>
     var blocks = document.querySelectorAll('pre code');
     for (var i = 0; i < blocks.length; i++) {
         hljs.highlightBlock(blocks[i]);
     }
-    <?php endif; ?>
+    </#if>
 
     if (isInitialLoad === false) {
-    <?php if($this->options->GoogleAnalytics): ?>
-        if (typeof ga !== 'undefined') ga('send', 'pageview', location.pathname + location.search);
-    <?php endif; ?>
-    <?php if($this->options->useMathjax == 'able'): ?>
+    <#if (options.pinghsu_style_post_mathjax!'false') == 'true'>
         if (typeof MathJax !== 'undefined'){MathJax.Hub.Queue(["Typeset",MathJax.Hub]);}
-    <?php endif; ?>
+    </#if>
     }
 });
 InstantClick.init('mousedown');
 </script>
-<?php endif; ?>
+</#if>
 </body>
 </html>
-<?php if ($this->options->htmlCompress == 'able'): $html_source = ob_get_contents(); ob_clean(); print compressHtml($html_source); ob_end_flush(); endif; ?>

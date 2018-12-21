@@ -1,30 +1,31 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+<#include "/common/macro/common_macro.ftl">
+<#macro header title,keywords,description>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="<?php $this->options->charset(); ?>"><?php if ($this->options->DnsPrefetch): ?>
-    <meta http-equiv="x-dns-prefetch-control" content="on"><?php if ($this->options->cdn_add): ?>
-    <link rel="dns-prefetch" href="<?php $this->options->cdn_add(); ?>" /><?php endif; ?>
+    <meta charset="UTF-8">
+
+    <#if (options.pinghsu_general_dns!'false') == 'true'>
+    <meta http-equiv="x-dns-prefetch-control" content="on">
     <link rel="dns-prefetch" href="//cdn.bootcss.com" />
-    <link rel="dns-prefetch" href="//secure.gravatar.com" /><?php endif; ?>
+    <link rel="dns-prefetch" href="//secure.gravatar.com" />
+    </#if>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="Cache-Control" content="no-transform"/>
-    <meta http-equiv="Cache-Control" content="no-siteapp"/><?php if($this->options->favicon): ?>
-    <link rel="shortcut icon" href="<?php $this->options->favicon(); ?>"><?php endif;?><?php if($this->options->iosicon): ?>
-    <link rel="apple-touch-icon" href="<?php $this->options->iosicon();?>"><?php endif; ?>
-    <title><?php $this->archiveTitle(array(
-    'category'  =>  _t(' %s '),
-    'search'    =>  _t(' %s '),
-    'tag'       =>  _t(' %s '),
-    'author'    =>  _t(' %s '),
-    'date'      =>  _t(' %s ')
-    ), '', ' - '); ?><?php $this->options->title(); ?></title>
-    <meta name="keywords" content="<?php $this->keywords(); ?>" />
-    <?php $this->header('keywords=&generator=&template=&pingback=&xmlrpc=&wlw=&commentReply=&rss1=&rss2=&atom='); ?>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <@verification></@verification>
+    <@favicon></@favicon>
+
+    <title>${title!}</title>
+    <meta name="keywords" content="${keywords!}" />
+    <meta name="description" content="${description!}" />
+
     <link href="//cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
-    <link href="<?php $this->options->themeUrl('style.min.css?20170331'); ?>" rel="stylesheet">
+    <link href="/${themeName}/source/css/style.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
@@ -39,44 +40,47 @@
 <header id="header" class="header bg-white">
     <div class="navbar-container">
         <a href="${options.blog_url!}" class="navbar-logo">
-            <?php if($this->options->logoUrl): ?>
-            <img src="<?php $this->options->logoUrl();?>" alt="<?php $this->options->title() ?>" />
-            <?php else : ?>
-            <?php $this->options->title() ?>
-            <?php endif; ?>
+            <#if options.blog_logo??>
+            <img src="${options.blog_logo!}" alt="${options.blog_title!}" />
+            <#else>
+            ${options.blog_title!}
+            </#if>
         </a>
         <div class="navbar-menu">
-            <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
-            <?php while($pages->next()): ?>
 
-            <a<?php if($this->is('page', $pages->slug)): ?> class="current"<?php endif; ?> href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a>
-            <?php endwhile; ?>
+            <@commonTag method="menus">
+                <#list menus?sort_by('menuSort') as menu>
+                    <a href="${menu.menuUrl}" target="${menu.menuTarget!}">${menu.menuName}</a>
+                </#list>
+            </@commonTag>
 
         </div>
-        <?php if($this->options->searchPage): ?>
-        <a href="<?php $this->options->searchPage(); ?>" class="navbar-search">
+
+        <#if options.pinghsu_general_search_page??>
+        <a href="${options.pinghsu_general_search_page!}" class="navbar-search">
             <span class="icon-search"></span>
         </a>
-        <?php else: ?>
+        <#else>
         <div class="navbar-search" onclick="">
             <span class="icon-search"></span>
-            <form id="search" method="post" action="<?php $this->options->siteUrl(); ?>" role="search">
+            <form id="search" method="post" action="${options.blog_url!}" role="search">
                 <span class="search-box">
                     <input type="text" id="input" class="input" name="s" required="true" placeholder="Search..." maxlength="30" autocomplete="off">
                 </span>
             </form>
         </div>
-        <?php endif;?>
+        </#if>
+
         <div class="navbar-mobile-menu" onclick="">
             <span class="icon-menu cross"><span class="middle"></span></span>
             <ul>
-                <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
-                <?php while($pages->next()): ?>
-
-                <li><a<?php if($this->is('page', $pages->slug)): ?> class="current"<?php endif; ?> href="<?php $pages->permalink(); ?>"><?php $pages->title(); ?></a></li>
-                <?php endwhile; ?>
-
+                <@commonTag method="menus">
+                    <#list menus?sort_by('menuSort') as menu>
+                    <li><a href="${menu.menuUrl}" target="${menu.menuTarget!}">${menu.menuName}</a></li>
+                    </#list>
+                </@commonTag>
             </ul>
         </div>
     </div>
 </header>
+</#macro>
