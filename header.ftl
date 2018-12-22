@@ -7,8 +7,8 @@
 
     <#if (options.pinghsu_general_dns!'false') == 'true'>
     <meta http-equiv="x-dns-prefetch-control" content="on">
-    <link rel="dns-prefetch" href="//cdn.bootcss.com" />
-    <link rel="dns-prefetch" href="//secure.gravatar.com" />
+    <link rel="dns-prefetch" href="//cdnjs.loli.net" />
+    <link rel="dns-prefetch" href="//gravatar.loli.net" />
     </#if>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
@@ -24,11 +24,11 @@
     <meta name="keywords" content="${keywords!}" />
     <meta name="description" content="${description!}" />
 
-    <link href="//cdn.bootcss.com/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
+    <link href="//cdnjs.loli.net/ajax/libs/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
     <link href="/${themeName}/source/css/style.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
-    <script src="//cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
-    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdnjs.loli.net/ajax/libs/html5shiv/r29/html5.min.js"></script>
+    <script src="//cdnjs.loli.net/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <body class="<?php if (array_key_exists('archive',unserialize($this->___fields()))): ?>bg-grey<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'defaultColor')): ?>bg-grey<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'customColor')): ?>bg-white<?php elseif(!$this->is('single')): ?>bg-grey<?php endif; ?>" gtools_scp_screen_capture_injected="true">

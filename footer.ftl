@@ -224,10 +224,10 @@ addCommentInputValue();
 </script>
 <?php endif; ?>
 <?php $this->footer(); ?>
-<script src="//cdn.bootcss.com/headroom/0.9.1/headroom.min.js"></script>
+<script src="//cdnjs.loli.net/ajax/libs/headroom/0.9.1/headroom.min.js"></script>
 
 <#if (options.pinghsu_style_post_highlight!'false') == 'true'>
-<script src="//cdn.bootcss.com/highlight.js/9.10.0/highlight.min.js"></script>
+<script src="//cdnjs.loli.net/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
 </#if>
 
 
@@ -236,7 +236,7 @@ addCommentInputValue();
 </#if>
 
 <#if (options.pinghsu_general_fast_click!'false') == 'true'>
-<script src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+<script src="//cdnjs.loli.net/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
 </#if>
 
 <script>
@@ -315,7 +315,7 @@ MathJax.Hub.Config({
 });
 MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 </script>
-<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="//cdnjs.loli.net/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </#if>
 
 <#-- 统计代码 -->
