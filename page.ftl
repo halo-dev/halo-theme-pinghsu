@@ -15,6 +15,6 @@
 	</div>
 </article>
 
-<?php $this->need('comments.php'); ?>
+<#include "comment.ftl">
 
 <#include "footer.ftl">

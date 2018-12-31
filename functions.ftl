@@ -10,10 +10,12 @@ ${bgColor[randomMethod(0,6)]}
 ${bgColor[randomMethod(0,10)]}
 </#macro>
 
+<#-- 随机缩略图 -->
 <#macro randThumbs>
 ${randomMethod(0,10)}.jpg
 </#macro>
 
+<#-- 最近发布的文章 -->
 <#macro getRecentPosts size>
 <#assign posts = recentPostsMethod(size) />
 <#if posts?? && posts?size gt 0>
@@ -25,6 +27,7 @@ ${randomMethod(0,10)}.jpg
 </#if>
 </#macro>
 
+<#-- 最近发布的评论 -->
 <#macro getRecentComments size>
 <#assign comments = recentCommentsMethod(size) />
 <#if comments?? && comments?size gt 0>
