@@ -1,3 +1,4 @@
+<#import "functions.ftl" as fun>
 <footer id="footer" class="footer <?php if (array_key_exists('archive',unserialize($this->___fields()))): ?>bg-white<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'defaultColor')): ?>bg-white<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'customColor')): ?>bg-grey<?php elseif($this->is('single')): ?>bg-white<?php endif; ?>">
 	<div class="footer-social">
 		<div class="footer-container clearfix">
@@ -38,20 +39,17 @@
 			</div>
 			<div class="meta-item meta-posts">
 				<h3 class="meta-title">RECENT POSTS</h3>
-                <?php getRecentPosts($this,8); ?>
+                <@fun.getRecentPosts 8/>
 			</div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">RECENT COMMENTS</h3>
-                <?php $this->widget('Widget_Comments_Recent','pageSize=8')->to($comments); ?>
-                <?php while($comments->next()): ?>
-                <li><a href="<?php $comments->permalink(); ?>"><?php $comments->author(false); ?> : <?php $comments->excerpt(25, '...'); ?></a></li>
-                <?php endwhile; ?>
+                <@fun.getRecentComments 8 />
             </div>
 		</div>
 	</div>
 </footer>
 
-<?php if (($this->options->tableOfContents == 'able') && ($this->is('post'))): ?>
+<#if (options.pinghsu_style_post_toc!'false') == 'true' && post??>
 <div id="directory-content" class="directory-content">
     <div id="directory"></div>
 </div>
@@ -145,85 +143,9 @@ var postDirectoryBuild = function() {
 };
 postDirectoryBuild();
 </script>
-<?php endif; ?>
-<?php if(($this->is('single')) && ($this->allow('comment'))): ?>
-<script>
-(function () {
-    window.TypechoComment = {
-        dom : function (id) {
-            return document.getElementById(id);
-        },
-        create : function (tag, attr) {
-            var el = document.createElement(tag);
-            for (var key in attr) {
-                el.setAttribute(key, attr[key]);
-            }
-            return el;
-        },
-        reply : function (cid, coid) {
-            var comment = this.dom(cid), parent = comment.parentNode,
-                response = this.dom('<?php echo $this->respondId(); ?>'),
-                input = this.dom('comment-parent'),
-                form = 'form' == response.tagName ? response : response.getElementsByTagName('form')[0],
-                textarea = response.getElementsByTagName('textarea')[0];
-            if (null == input) {
-                input = this.create('input', {
-                    'type' : 'hidden',
-                    'name' : 'parent',
-                    'id'   : 'comment-parent'
-                });
+</#if>
 
-                form.appendChild(input);
-            }
-            input.setAttribute('value', coid);
-            if (null == this.dom('comment-form-place-holder')) {
-                var holder = this.create('div', {
-                    'id' : 'comment-form-place-holder'
-                });
-
-                response.parentNode.insertBefore(holder, response);
-            }
-            comment.appendChild(response);
-            this.dom('cancel-comment-reply-link').style.display = '';
-            if (null != textarea && 'text' == textarea.name) {
-                textarea.focus();
-            }
-            return false;
-        },
-        cancelReply : function () {
-            var response = this.dom('<?php echo $this->respondId(); ?>'),
-            holder = this.dom('comment-form-place-holder'),
-            input = this.dom('comment-parent');
-            if (null != input) {
-                input.parentNode.removeChild(input);
-            }
-            if (null == holder) {
-                return true;
-            }
-            this.dom('cancel-comment-reply-link').style.display = 'none';
-            holder.parentNode.insertBefore(response, holder);
-            return false;
-        }
-    };
-})();
-<?php if(!$this->user->hasLogin()): ?>
-function getCommentCookie(name){
-    var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
-    if(arr=document.cookie.match(reg))
-        return unescape(decodeURI(arr[2]));
-    else
-        return null;
-}
-function addCommentInputValue(){
-    document.getElementById('author').value = getCommentCookie('<?php echo md5($this->request->getUrlPrefix()); ?>__typecho_remember_author');
-    document.getElementById('mail').value = getCommentCookie('<?php echo md5($this->request->getUrlPrefix()); ?>__typecho_remember_mail');
-    document.getElementById('url').value = getCommentCookie('<?php echo md5($this->request->getUrlPrefix()); ?>__typecho_remember_url');
-}
-addCommentInputValue();
-<?php endif; ?>
-</script>
-<?php endif; ?>
-<?php $this->footer(); ?>
+<#--<?php $this->footer(); ?>-->
 <script src="//cdnjs.loli.net/ajax/libs/headroom/0.9.1/headroom.min.js"></script>
 
 <#if (options.pinghsu_style_post_highlight!'false') == 'true'>

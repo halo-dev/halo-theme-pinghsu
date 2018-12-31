@@ -1,6 +1,6 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-<?php $this->need('header.php'); ?>
-
+<#include "header.ftl">
+<#import "functions.ftl" as fun>
+<@header title="归档 | ${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_desc!}"></@header>
 <div class="main-content common-page clearfix">
     <div class="common-item">
         <div class="common-title">
