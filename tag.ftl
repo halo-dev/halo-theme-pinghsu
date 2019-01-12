@@ -34,28 +34,28 @@
                 <#if posts.hasPrevious()>
 					<#if posts.number == 1>
                         <li class="prev">
-                            <a href="/tags/${tag.tagName}">←</a>
+                            <a href="/tags/${tag.tagUrl!}">←</a>
                         </li>
 					<#else>
                         <li class="prev">
-                            <a href="/tags/${tag.tagName}/page/${posts.number}">←</a>
+                            <a href="/tags/${tag.tagUrl!}/page/${posts.number}">←</a>
                         </li>
 					</#if>
 				</#if>
                 <#list rainbow as r>
 					<#if r == posts.number+1>
                         <li class="current">
-                            <a href="/tags/${tag.tagName}/page/${r}">${r}</a>
+                            <a href="/tags/${tag.tagUrl!}/page/${r}">${r}</a>
                         </li>
 					<#else>
                         <li>
-                            <a href="/tags/${tag.tagName}/page/${r}">${r}</a>
+                            <a href="/tags/${tag.tagUrl!}/page/${r}">${r}</a>
                         </li>
 					</#if>
 				</#list>
                 <#if posts.hasNext()>
                     <li class="next">
-                        <a href="/tags/${tag.tagName}/page/${posts.number+2}">→</a>
+                        <a href="/tags/${tag.tagUrl!}/page/${posts.number+2}">→</a>
                     </li>
 				</#if>
             </ol>
