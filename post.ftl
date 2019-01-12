@@ -164,5 +164,4 @@
         </div>
     </div>
 <#include "comment.ftl">
-
 <#include "footer.ftl">

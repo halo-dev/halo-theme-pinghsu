@@ -1,4 +1,5 @@
 <#include "header.ftl">
+<#import "functions.ftl" as fun>
 <@header title="搜索 | ${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_desc!}"></@header>
 <div class="main-content page-page">
     <div class="search-page">
@@ -12,13 +13,13 @@
         <@commonTag method="tags">
             <#if tags?? && tags?size gt 0>
                 <#list tags as tag>
-                    <a href="/tags/${tag.tagUrl}" class="<#if (options.pinghsu_style_post_color!'false' == 'false')> bg-white<#else >text-white bg-<?php echo randBgColor(); ?></#if>"># ${tag.tagName!}(${tag.posts?size})</a>
+                    <a href="/tags/${tag.tagUrl}" class="<#if (options.pinghsu_style_post_color!'false' == 'false')> bg-white<#else >text-white bg-<@fun.randBgColor/></#if>"># ${tag.tagName!}(${tag.posts?size})</a>
                 </#list>
             <#else>
             <p> Nothing here ! </p>
             </#if>
         </@commonTag>
-        <div class="search-tags-hr <#if (options.pinghsu_style_post_color!'false') == 'false'>bg-deepgrey<#else>bg-<?php echo randBgColor(); ?></#if>"></div>
+        <div class="search-tags-hr <#if (options.pinghsu_style_post_color!'false') == 'false'>bg-deepgrey<#else>bg-<@fun.randBgColor/></#if>"></div>
         </div>
     </div>
 </div>
