@@ -2,43 +2,14 @@
 <#import "functions.ftl" as fun>
 <@header title="${post.postTitle!} | ${options.blog_title!}" keywords="${post.postTitle!},${options.seo_keywords!},${tagWords!}" description="${post.postSummary!}"></@header>
 
-<?php if ($this->options->postshowthumb == 'able'): if (array_key_exists('thumb', unserialize($this->___fields()))): ?>
-    <div class="post-header-thumb <#if (options.pinghsu_style_post_color!'false') == 'false'>bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>" style="background-image:url(${post.postThumbnail!});">
-        <div class="post-header-thumb-op" style="background-image:url(<?php parseFieldsThumb($this); ?>);"></div>
-        <div class="post-header-thumb-cover">
-            <div class="post-header-thumb-container">
-                <div class="post-header-thumb-title">
-                    ${post.postTitle!}
-                </div>
-                <div class="post-header-thumb-meta">
-                    <time datetime="${post.postDate}" itemprop="datePublished">
-                        Published on ${post.postDate?string('MMM d,yyyy')}
-                    </time>
-                    in
-                    <#if post.categories?? && post.categories?size gt 0>
-                        <a href="/categories/${post.categories[0].cateUrl}">${post.categories[0].cateName}</a>
-                    </#if>
-                    with <a href="#comments"> ${post.comments?size} comment</a>
-                </div>
-                <div class="post-tags">
-                    <#if post.tags?? && post.tags?size gt 0>
-                        <#list post.tags as tag>
-                            <a href="${options.blog_url}/tags/${tag.tagUrl!}">${tag.tagName!}</a>
-                        </#list>
-                    </#if>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php else : ?>
-    <?php $thumb = showThumb($this, null, true); ?>
-    <?php if (!empty($thumb)): ?>
+<#if (options.pinghsu_style_post_picture!'false') == 'true'>
+    <#if post.postThumbnail?? && post.postThumbnail!=''>
         <div class="post-header-thumb <#if (options.pinghsu_style_post_color!'false') == 'false'>bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>">
-            <div class="post-header-thumb-op" style="background-image:url(<?php echo $thumb; ?>);"></div>
+            <div class="post-header-thumb-op" style="background-image:url(${post.postThumbnail});"></div>
             <div class="post-header-thumb-cover">
                 <div class="post-header-thumb-container">
                     <div class="post-header-thumb-title">
-                    ${post.postTitle!}
+                        ${post.postTitle!}
                     </div>
                     <div class="post-header-thumb-meta">
                         <time datetime="${post.postDate}" itemprop="datePublished">
@@ -48,7 +19,7 @@
                         <#if post.categories?? && post.categories?size gt 0>
                             <a href="/categories/${post.categories[0].cateUrl}">${post.categories[0].cateName}</a>
                         </#if>
-                        with <a href="#comments"> ${post.comments?size} comment</a>
+                        with<a href="#comments"> ${post.comments?size} comment</a>
                     </div>
                     <div class="post-tags">
                         <#if post.tags?? && post.tags?size gt 0>
@@ -60,7 +31,7 @@
                 </div>
             </div>
         </div>
-    <?php else : ?>
+    <#else>
         <div class="post-header-thumb <#if (options.pinghsu_style_post_color!'false') == 'false'>bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>">
             <div class="post-header-thumb-op" style="background-image:url(/${themeName}/source/images/thumbs/<@fun.randThumbs/>);"></div>
             <div class="post-header-thumb-cover">
@@ -88,8 +59,8 @@
                 </div>
             </div>
         </div>
-    <?php endif;endif;endif; ?>
-
+    </#if>
+</#if>
     <article class="main-content <#if (options.pinghsu_style_post_picture!'false') == 'true'>post-page<#else>page-page</#if>" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">

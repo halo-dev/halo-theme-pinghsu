@@ -1,5 +1,6 @@
+<#include "/common/macro/common_macro.ftl">
 <#import "functions.ftl" as fun>
-<footer id="footer" class="footer <?php if (array_key_exists('archive',unserialize($this->___fields()))): ?>bg-white<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'defaultColor')): ?>bg-white<?php elseif($this->is('archive')&&($this->options->colorBgPosts == 'customColor')): ?>bg-grey<?php elseif($this->is('single')): ?>bg-white<?php endif; ?>">
+<footer id="footer" class="footer bg-white">
 	<div class="footer-social">
 		<div class="footer-container clearfix">
 			<div class="social-list">
@@ -241,6 +242,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 </#if>
 
 <#-- 统计代码 -->
+<@statistics />
 
 <#if (options.pinghsu_general_pjax!'false')=='true'>
 <script data-no-instant>
