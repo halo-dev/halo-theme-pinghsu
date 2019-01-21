@@ -1,4 +1,4 @@
-<h1><a href="#" target="_blank">NexT-Halo</a></h1>
+<h1><a href="#" target="_blank">Pinghsu-Halo</a></h1>
 
 > 一款Halo的主题，来自Typecho。
 
