@@ -33,7 +33,7 @@
                         <div class="item-slant"></div>
                         <div class="item-label">
                             <div class="item-title">
-                                <a href="${post.postUrl!}">${post.postTitle!}</a>
+                                <a href="/archives/${post.postUrl!}">${post.postTitle!}</a>
                             </div>
                             <div class="item-meta clearfix">
                                 <div class="item-meta-ico bg-ico-<@fun.randBgIco />"
@@ -60,7 +60,7 @@
                             </a>
                             <div class="onelist-item-info">
                                 <div class="item-title">
-                                    <a href="${post.postUrl}">${post.postTitle!}</a>
+                                    <a href="/archives/${post.postUrl}">${post.postTitle!}</a>
                                 </div>
                                 <div class="item-meta">
                                     <time datetime="${post.postDate}" itemprop="datePublished">
