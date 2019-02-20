@@ -17,7 +17,7 @@
                         </time>
                         in
                         <#if post.categories?? && post.categories?size gt 0>
-                            <a href="/categories/${post.categories[0].cateUrl}">${post.categories[0].cateName}</a>
+                            <a href="${options.blog_url!}/categories/${post.categories[0].cateUrl}">${post.categories[0].cateName}</a>
                         </#if>
                         with<a href="#comments"> ${post.comments?size} comment</a>
                     </div>
@@ -45,7 +45,7 @@
                         </time>
                         in
                         <#if post.categories?? && post.categories?size gt 0>
-                            <a href="/categories/${post.categories[0].cateUrl}">${post.categories[0].cateName}</a>
+                            <a href="${options.blog_url!}/categories/${post.categories[0].cateUrl}">${post.categories[0].cateName}</a>
                         </#if>
                         with<a href="#comments"> ${post.comments?size} comment</a>
                     </div>
@@ -72,7 +72,7 @@
                 </time>
                 in
                 <#if post.categories?? && post.categories?size gt 0>
-                    <a href="/categories/${post.categories[0].cateUrl}">${post.categories[0].cateName}</a>
+                    <a href="${options.blog_url!}/categories/${post.categories[0].cateUrl}">${post.categories[0].cateName}</a>
                 </#if>
                 with<a href="#comments"> ${post.comments?size} comment</a>
             </div>
@@ -87,7 +87,7 @@
             </p>
             ${post.postContent!}
             <p class="post-info">
-                本文由 <a href="/">${user.userDisplayName!}</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a>
+                本文由 <a href="${options.blog_url!}/">${user.userDisplayName!}</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a>
                 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为: ${post.postUpdate?string('MMM d,yyyy')}
             </p>
         </div>

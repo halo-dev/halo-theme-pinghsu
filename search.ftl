@@ -13,7 +13,7 @@
                         <div class="post-list-item">
                             <div class="post-list-item-container <#if (options.pinghsu_style_post_color!'false') == 'true'>bg-<@fun.randBgColor/></#if>">
                                 <div class="item-label <#if (options.pinghsu_style_post_color!'false') == 'true'>bg-<@fun.randBgColor/></#if>">
-                                    <div class="item-title"><a href="/archives/${post.postUrl!}">${post.postTitle!}</a></div>
+                                    <div class="item-title"><a href="${options.blog_url!}/archives/${post.postUrl!}">${post.postTitle!}</a></div>
                                     <div class="item-meta clearfix">
                                         <div class="item-meta-ico bg-ico-<@fun.randBgIco/>" style="background: url(/${themeName}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                                         <div class="item-meta-date"> ${post.postDate?string('MMM d,yyyy')} </div>
@@ -34,28 +34,28 @@
                 <#if posts.hasPrevious()>
                     <#if posts.number == 1>
                         <li class="prev">
-                            <a href="/search?keyword=${keyword}">←</a>
+                            <a href="${options.blog_url!}/search?keyword=${keyword}">←</a>
                         </li>
                     <#else>
                         <li class="prev">
-                            <a href="/search/page/${posts.number}?keyword=${keyword}">←</a>
+                            <a href="${options.blog_url!}/search/page/${posts.number}?keyword=${keyword}">←</a>
                         </li>
                     </#if>
                 </#if>
                 <#list rainbow as r>
                     <#if r == posts.number+1>
                         <li class="current">
-                            <a href="/search/page/${r}?keyword=${keyword}">${r}</a>
+                            <a href="${options.blog_url!}/search/page/${r}?keyword=${keyword}">${r}</a>
                         </li>
                     <#else>
                         <li>
-                            <a href="/search/page/${r}?keyword=${keyword}">${r}</a>
+                            <a href="${options.blog_url!}/search/page/${r}?keyword=${keyword}">${r}</a>
                         </li>
                     </#if>
                 </#list>
                 <#if posts.hasNext()>
                     <li class="next">
-                        <a href="/search/page/${posts.number+2}?keyword=${keyword}">→</a>
+                        <a href="${options.blog_url!}/search/page/${posts.number+2}?keyword=${keyword}">→</a>
                     </li>
                 </#if>
             </ol>

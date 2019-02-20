@@ -63,7 +63,7 @@
         <#else>
         <div class="navbar-search" onclick="">
             <span class="icon-search"></span>
-            <form id="search" method="get" action="/search" role="search">
+            <form id="search" method="get" action="${options.blog_url!}/search" role="search">
                 <span class="search-box">
                     <input type="text" id="input" class="input" name="keyword" required="true" placeholder="Search..." maxlength="30" autocomplete="off">
                 </span>

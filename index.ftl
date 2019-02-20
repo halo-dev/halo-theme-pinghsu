@@ -24,7 +24,7 @@
                         <#else>
                             <div class="item-thumb <#if (options.pinghsu_style_post_color!'false') == 'false'> bg-deepgrey<#else >bg-<@fun.randBgColor /></#if>" style="background-image:url(/${themeName}/source/images/thumbs/<@fun.randThumbs/>);"></div>
                         </#if>
-                        <a href="/archives/${post.postUrl!}">
+                        <a href="${options.blog_url!}/archives/${post.postUrl!}">
                             <div class="item-desc">
                                 <p>${post.postSummary!}</p>
                             </div>
@@ -40,7 +40,7 @@
                                      style="background: url(/${themeName}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                                 <div class="item-meta-cat">
                                     <#if post.categories?? && post.categories?size gt 0>
-                                        <a href="/categories/${post.categories[0].cateUrl}">${post.categories[0].cateName}</a>
+                                        <a href="${options.blog_url!}/categories/${post.categories[0].cateUrl}">${post.categories[0].cateName}</a>
                                     </#if>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                 <#if (options.pinghsu_style_post_list!'one') == 'one'>
                     <div class="post-onelist-item">
                         <div class="post-onelist-item-container">
-                            <a href="/archives/${post.postUrl}">
+                            <a href="${options.blog_url!}/archives/${post.postUrl}">
                                 <#if post.postThumbnail?? && post.postThumbnail!=''>
                                     <div class="onelist-item-thumb <#if (options.pinghsu_style_post_color!'false') == 'false'> bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>" style="background-image:url(${post.postThumbnail!});"></div>
                                 <#else>
@@ -67,7 +67,7 @@
                                         发布于 ${post.postDate?string('MMM d,yyyy')}
                                     </time>in
                                     <#if post.categories?? && post.categories?size gt 0>
-                                        <a href="/categories/${post.categories[0].cateUrl}">${post.categories[0].cateName}</a>
+                                        <a href="${options.blog_url!}/categories/${post.categories[0].cateUrl}">${post.categories[0].cateName}</a>
                                     </#if>
                                     </a>
                                 </div>
@@ -76,7 +76,7 @@
                                     <p>${post.postSummary!}</p>
                                 </div>
                                 <div class="item-readmore">
-                                    <a href="/archives/${post.postUrl!}"> 继续阅读 → </a>
+                                    <a href="${options.blog_url!}/archives/${post.postUrl!}"> 继续阅读 → </a>
                                 </div>
                             </div>
                         </div>
@@ -91,28 +91,28 @@
                 <#if posts.hasPrevious()>
                     <#if posts.number == 1>
                         <li class="pre">
-                            <a href="/">←</a>
+                            <a href="${options.blog_url!}/">←</a>
                         </li>
                     <#else>
                         <li class="pre">
-                            <a href="/page/${posts.number}">←</a>
+                            <a href="${options.blog_url!}/page/${posts.number}">←</a>
                         </li>
                     </#if>
                 </#if>
                 <#list rainbow as r>
                     <#if r == posts.number+1>
                         <li class="current">
-                            <a href="/page/${r}">${r}</a>
+                            <a href="${options.blog_url!}/page/${r}">${r}</a>
                         </li>
                     <#else>
                         <li>
-                            <a href="/page/${r}">${r}</a>
+                            <a href="${options.blog_url!}/page/${r}">${r}</a>
                         </li>
                     </#if>
                 </#list>
                 <#if posts.hasNext()>
                     <li class="next">
-                        <a href="/page/${posts.number+2}/">→</a>
+                        <a href="${options.blog_url!}/page/${posts.number+2}/">→</a>
                     </li>
                 </#if>
             </ol>

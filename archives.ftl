@@ -14,7 +14,7 @@
                                     <div class="post-list-item">
                                         <div class="post-list-item-container">
                                             <div class="item-label">
-                                                <div class="item-title"><a href="/archives/${post.postUrl!}">${post.postTitle!}</a></div>
+                                                <div class="item-title"><a href="${options.blog_url!}/archives/${post.postUrl!}">${post.postTitle!}</a></div>
                                                 <div class="item-meta clearfix">
                                                     <div class="item-meta-date"> ${post.postDate?string('MMM d,yyyy')} </div>
                                                 </div>
