@@ -13,7 +13,7 @@
         <@commonTag method="tags">
             <#if tags?? && tags?size gt 0>
                 <#list tags as tag>
-                    <a href="${options.blog_url!}/tags/${tag.tagUrl}" class="<#if (options.pinghsu_style_post_color!'false') == 'false'> bg-white<#else >text-white bg-<@fun.randBgColor/></#if>"># ${tag.tagName!}(${tag.posts?size})</a>
+                    <a href="${options.blog_url!}/tags/${tag.slugName}" class="<#if (options.pinghsu_style_post_color!'false') == 'false'> bg-white<#else >text-white bg-<@fun.randBgColor/></#if>"># ${tag.name!}(${tag.posts?size})</a>
                 </#list>
             <#else>
             <p> Nothing here ! </p>

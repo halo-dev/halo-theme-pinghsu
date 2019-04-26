@@ -1,0 +1,132 @@
+general:
+  label: 基本设置
+  items:
+    footer_logo:
+      name: footer_logo
+      label: 页尾 logo
+      type: text
+    search_page:
+      name: search_page
+      label: 搜索页地址
+      type: text
+    pjax:
+      name: pjax
+      label: PJAX 加速设置
+      type: radio
+      data-type: bool
+      default: true
+      options:
+        - value: true
+          label: 开启
+        - value: false
+          label: 关闭
+    dns:
+      name: dns
+      label: DNS 预解析加速
+      type: radio
+      data-type: bool
+      default: true
+      options:
+        - value: true
+          label: 开启
+        - value: false
+          label: 关闭
+    fast_click:
+      name: fast_click
+      label: 移动端点击延迟消除插件
+      type: radio
+      data-type: bool
+      default: true
+      options:
+        - value: true
+          label: 开启
+        - value: false
+          label: 关闭
+style:
+  label: 样式设置
+  items:
+    post_list:
+      name: post_list
+      label: 首页文章列表
+      type: radio
+      data-type: string
+      default: three
+      options:
+        - value: three
+          label: 三栏
+        - value: one
+          label: 单栏
+    post_color:
+      name: post_color
+      label: 文章色块设置
+      type: radio
+      data-type: bool
+      default: false
+      options:
+        - value: true
+          label: 开启
+        - value: false
+          label: 关闭
+    post_picture:
+      name: post_picture
+      label: 文章题图设置
+      type: radio
+      data-type: bool
+      default: false
+      options:
+        - value: true
+          label: 开启
+        - value: false
+          label: 关闭
+    post_toc:
+      name: post_toc
+      label: 文章目录设置
+      type: radio
+      data-type: bool
+      default: true
+      options:
+        - value: true
+          label: 开启
+        - value: false
+          label: 关闭
+    post_highlight:
+      name: post_highlight
+      label: 代码高亮设置
+      type: radio
+      data-type: bool
+      default: false
+      options:
+        - value: true
+          label: 开启
+        - value: false
+          label: 关闭
+    post_mathjax:
+      name: post_mathjax
+      label: 文章 Mathjax 设置
+      type: radio
+      data-type: bool
+      default: false
+      options:
+        - value: true
+          label: 开启
+        - value: false
+          label: 关闭
+sns:
+  label: 社交资料设置
+  items:
+    weibo:
+      name: weibo
+      label: 微博链接
+      type: text
+    zhihu:
+      name: zhihu
+      label: 知乎链接
+      type: text
+    github:
+      name: github
+      label: GitHub 链接
+      type: text
+    twitter:
+      name: twitter
+      label: Twitter 链接
+      type: text

@@ -48,11 +48,11 @@
         </a>
         <div class="navbar-menu">
 
-            <@commonTag method="menus">
-                <#list menus?sort_by('menuSort') as menu>
-                    <a href="${menu.menuUrl}" target="${menu.menuTarget!}">${menu.menuName}</a>
+            <@menuTag method="list">
+                <#list menus?sort_by('sort') as menu>
+                    <a href="${menu.url}" target="${menu.target!}">${menu.name}</a>
                 </#list>
-            </@commonTag>
+            </@menuTag>
 
         </div>
 
@@ -74,11 +74,11 @@
         <div class="navbar-mobile-menu" onclick="">
             <span class="icon-menu cross"><span class="middle"></span></span>
             <ul>
-                <@commonTag method="menus">
-                    <#list menus?sort_by('menuSort') as menu>
-                    <li><a href="${menu.menuUrl}" target="${menu.menuTarget!}">${menu.menuName}</a></li>
+                <@menuTag method="list">
+                    <#list menus?sort_by('sort') as menu>
+                    <li><a href="${menu.url}" target="${menu.target!}">${menu.name}</a></li>
                     </#list>
-                </@commonTag>
+                </@menuTag>
             </ul>
         </div>
     </div>

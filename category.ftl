@@ -1,10 +1,10 @@
 <#include "header.ftl">
 <#import "functions.ftl" as fun>
-<@header title="分类：${category.cateName!} | ${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_desc!}"></@header>
+<@header title="分类：${category.name!} | ${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_desc!}"></@header>
 <div class="main-content common-page clearfix">
     <div class="common-item">
         <div class="common-title">
-            Category : ${category.cateName!}
+            Category : ${category.name!}
         </div>
         <div class="post-lists">
 			<div class="post-lists-body">
@@ -13,10 +13,10 @@
 						<div class="post-list-item">
 							<div class="post-list-item-container <#if (options.pinghsu_style_post_color!'false') == 'true'>bg-<@fun.randBgColor/></#if>">
 								<div class="item-label <#if (options.pinghsu_style_post_color!'false') == 'true'>bg-<@fun.randBgColor/></#if>">
-                                    <div class="item-title"><a href="${options.blog_url!}/archives/${post.postUrl!}">${post.postTitle!}</a></div>
+                                    <div class="item-title"><a href="${options.blog_url!}/archives/${post.url!}">${post.title!}</a></div>
 									<div class="item-meta clearfix">
 										<div class="item-meta-ico bg-ico-<@fun.randBgIco/>" style="background: url(/${themeName}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
-										<div class="item-meta-date"> ${post.postDate?string('MMM d,yyyy')} </div>
+										<div class="item-meta-date"> ${post.createTime?string('MMM d,yyyy')} </div>
 									</div>
 								</div>
 							</div>
@@ -34,28 +34,28 @@
                 <#if posts.hasPrevious()>
 					<#if posts.number == 1>
                         <li class="prev">
-                            <a href="${options.blog_url!}/categories/${category.cateUrl!}">←</a>
+                            <a href="${options.blog_url!}/categories/${category.slugName!}">←</a>
                         </li>
 					<#else>
                         <li class="prev">
-                            <a href="${options.blog_url!}/categories/${category.cateUrl!}/page/${posts.number}">←</a>
+                            <a href="${options.blog_url!}/categories/${category.slugName!}/page/${posts.number}">←</a>
                         </li>
 					</#if>
 				</#if>
                 <#list rainbow as r>
 					<#if r == posts.number+1>
                         <li class="current">
-                            <a href="${options.blog_url!}/categories/${category.cateUrl!}/page/${r}">${r}</a>
+                            <a href="${options.blog_url!}/categories/${category.slugName!}/page/${r}">${r}</a>
                         </li>
 					<#else>
                         <li>
-                            <a href="${options.blog_url!}/categories/${category.cateUrl!}/page/${r}">${r}</a>
+                            <a href="${options.blog_url!}/categories/${category.slugName!}/page/${r}">${r}</a>
                         </li>
 					</#if>
 				</#list>
                 <#if posts.hasNext()>
                     <li class="next">
-                        <a href="${options.blog_url!}/categories/${category.cateUrl!}/page/${posts.number+2}">→</a>
+                        <a href="${options.blog_url!}/categories/${category.slugName!}/page/${posts.number+2}">→</a>
                     </li>
 				</#if>
             </ol>

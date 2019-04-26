@@ -24,7 +24,7 @@
                         <#else>
                             <div class="item-thumb <#if (options.pinghsu_style_post_color!'false') == 'false'> bg-deepgrey<#else >bg-<@fun.randBgColor /></#if>" style="background-image:url(/${themeName}/source/images/thumbs/<@fun.randThumbs/>);"></div>
                         </#if>
-                        <a href="${options.blog_url!}/archives/${post.postUrl!}">
+                        <a href="${options.blog_url!}/archives/${post.url!}">
                             <div class="item-desc">
                                 <p>${post.postSummary!}</p>
                             </div>
@@ -33,14 +33,14 @@
                         <div class="item-slant"></div>
                         <div class="item-label">
                             <div class="item-title">
-                                <a href="${options.blog_url!}/archives/${post.postUrl!}">${post.postTitle!}</a>
+                                <a href="${options.blog_url!}/archives/${post.url!}">${post.title!}</a>
                             </div>
                             <div class="item-meta clearfix">
                                 <div class="item-meta-ico bg-ico-<@fun.randBgIco />"
                                      style="background: url(/${themeName}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                                 <div class="item-meta-cat">
                                     <#if post.categories?? && post.categories?size gt 0>
-                                        <a href="${options.blog_url!}/categories/${post.categories[0].cateUrl}">${post.categories[0].cateName}</a>
+                                        <a href="${options.blog_url!}/categories/${post.categories[0].slugName}">${post.categories[0].name}</a>
                                     </#if>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                 <#if (options.pinghsu_style_post_list!'one') == 'one'>
                     <div class="post-onelist-item">
                         <div class="post-onelist-item-container">
-                            <a href="${options.blog_url!}/archives/${post.postUrl}">
+                            <a href="${options.blog_url!}/archives/${post.url}">
                                 <#if post.postThumbnail?? && post.postThumbnail!=''>
                                     <div class="onelist-item-thumb <#if (options.pinghsu_style_post_color!'false') == 'false'> bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>" style="background-image:url(${post.postThumbnail!});"></div>
                                 <#else>
@@ -60,14 +60,14 @@
                             </a>
                             <div class="onelist-item-info">
                                 <div class="item-title">
-                                    <a href="${options.blog_url!}/archives/${post.postUrl}">${post.postTitle!}</a>
+                                    <a href="${options.blog_url!}/archives/${post.url}">${post.title!}</a>
                                 </div>
                                 <div class="item-meta">
-                                    <time datetime="${post.postDate}" itemprop="datePublished">
-                                        发布于 ${post.postDate?string('MMM d,yyyy')}
+                                    <time datetime="${post.createTime}" itemprop="datePublished">
+                                        发布于 ${post.createTime?string('MMM d,yyyy')}
                                     </time>in
                                     <#if post.categories?? && post.categories?size gt 0>
-                                        <a href="${options.blog_url!}/categories/${post.categories[0].cateUrl}">${post.categories[0].cateName}</a>
+                                        <a href="${options.blog_url!}/categories/${post.categories[0].slugName}">${post.categories[0].name}</a>
                                     </#if>
                                     </a>
                                 </div>
@@ -76,7 +76,7 @@
                                     <p>${post.postSummary!}</p>
                                 </div>
                                 <div class="item-readmore">
-                                    <a href="${options.blog_url!}/archives/${post.postUrl!}"> 继续阅读 → </a>
+                                    <a href="${options.blog_url!}/archives/${post.url!}"> 继续阅读 → </a>
                                 </div>
                             </div>
                         </div>
