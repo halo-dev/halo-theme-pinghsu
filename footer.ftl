@@ -156,7 +156,7 @@ postDirectoryBuild();
 
 
 <#if (options.pinghsu_general_pjax!'false') == 'true'>
-<script src="/${themeName}/source/js/instantclick.min.js?v20140319"></script>
+<script src="/${theme.folderName}/source/js/instantclick.min.js?v20140319"></script>
 </#if>
 
 <#if (options.pinghsu_general_fast_click!'false') == 'true'>

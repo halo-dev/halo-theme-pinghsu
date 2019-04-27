@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
 
-    <#if (options.pinghsu_general_dns!'false') == 'true'>
+    <#if settings.pinghsu_general_dns!false>
     <meta http-equiv="x-dns-prefetch-control" content="on">
     <link rel="dns-prefetch" href="//cdnjs.loli.net" />
     <link rel="dns-prefetch" href="//gravatar.loli.net" />
@@ -25,7 +25,7 @@
     <meta name="description" content="${description!}" />
 
     <link href="//cdnjs.loli.net/ajax/libs/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
-    <link href="/${themeName}/source/css/style.min.css" rel="stylesheet">
+    <link href="/${theme.folderName}/source/css/style.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="//cdnjs.loli.net/ajax/libs/html5shiv/r29/html5.min.js"></script>
     <script src="//cdnjs.loli.net/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -49,7 +49,7 @@
         <div class="navbar-menu">
 
             <@menuTag method="list">
-                <#list menus?sort_by('sort') as menu>
+                <#list menus?sort_by('priority') as menu>
                     <a href="${menu.url}" target="${menu.target!}">${menu.name}</a>
                 </#list>
             </@menuTag>
@@ -75,7 +75,7 @@
             <span class="icon-menu cross"><span class="middle"></span></span>
             <ul>
                 <@menuTag method="list">
-                    <#list menus?sort_by('sort') as menu>
+                    <#list menus?sort_by('priority') as menu>
                     <li><a href="${menu.url}" target="${menu.target!}">${menu.name}</a></li>
                     </#list>
                 </@menuTag>

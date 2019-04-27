@@ -2,10 +2,10 @@
 <#import "functions.ftl" as fun>
 <@header title="${post.title!} | ${options.blog_title!}" keywords="${post.title!},${options.seo_keywords!},${tagWords!}" description="${post.postSummary!}"></@header>
 
-<#if (options.pinghsu_style_post_picture!'false') == 'true'>
-    <#if post.postThumbnail?? && post.postThumbnail!=''>
-        <div class="post-header-thumb <#if (options.pinghsu_style_post_color!'false') == 'false'>bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>">
-            <div class="post-header-thumb-op" style="background-image:url(${post.postThumbnail});"></div>
+<#if settings.post_picture!false>
+    <#if post.thumbnail?? && post.thumbnail!=''>
+        <div class="post-header-thumb <#if !settings.post_color!false>bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>">
+            <div class="post-header-thumb-op" style="background-image:url(${post.thumbnail});"></div>
             <div class="post-header-thumb-cover">
                 <div class="post-header-thumb-container">
                     <div class="post-header-thumb-title">
@@ -19,7 +19,7 @@
                         <#if post.categories?? && post.categories?size gt 0>
                             <a href="${options.blog_url!}/categories/${post.categories[0].slugName}">${post.categories[0].name}</a>
                         </#if>
-                        with<a href="#comments"> ${post.comments?size} comment</a>
+                        with<a href="#comments"> ${comments.totalElements} comment</a>
                     </div>
                     <div class="post-tags">
                         <#if post.tags?? && post.tags?size gt 0>
@@ -32,8 +32,8 @@
             </div>
         </div>
     <#else>
-        <div class="post-header-thumb <#if (options.pinghsu_style_post_color!'false') == 'false'>bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>">
-            <div class="post-header-thumb-op" style="background-image:url(/${themeName}/source/images/thumbs/<@fun.randThumbs/>);"></div>
+        <div class="post-header-thumb <#if !settings.post_color!false>bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>">
+            <div class="post-header-thumb-op" style="background-image:url(/${theme.folderName}/source/images/thumbs/<@fun.randThumbs/>);"></div>
             <div class="post-header-thumb-cover">
                 <div class="post-header-thumb-container">
                     <div class="post-header-thumb-title">
@@ -47,7 +47,7 @@
                         <#if post.categories?? && post.categories?size gt 0>
                             <a href="${options.blog_url!}/categories/${post.categories[0].slugName}">${post.categories[0].name}</a>
                         </#if>
-                        with<a href="#comments"> ${post.comments?size} comment</a>
+                        with<a href="#comments"> ${comments.totalElements} comment</a>
                     </div>
                     <div class="post-tags">
                         <#if post.tags?? && post.tags?size gt 0>
@@ -61,7 +61,7 @@
         </div>
     </#if>
 </#if>
-    <article class="main-content <#if (options.pinghsu_style_post_picture!'false') == 'true'>post-page<#else>page-page</#if>" itemscope itemtype="http://schema.org/Article">
+    <article class="main-content <#if !settings.post_picture!false>post-page<#else>page-page</#if>" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
                 ${post.title!}
@@ -74,7 +74,7 @@
                 <#if post.categories?? && post.categories?size gt 0>
                     <a href="${options.blog_url!}/categories/${post.categories[0].slugName}">${post.categories[0].name}</a>
                 </#if>
-                with<a href="#comments"> ${post.comments?size} comment</a>
+                with<a href="#comments"> ${comments.totalElements!0} comment</a>
             </div>
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
@@ -87,8 +87,8 @@
             </p>
             ${post.formatContent!}
             <p class="post-info">
-                本文由 <a href="${options.blog_url!}/">${user.userDisplayName!}</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a>
-                国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为: ${post.postUpdate?string('MMM d,yyyy')}
+                本文由 <a href="${options.blog_url!}/">${user.nickName!}</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a>
+                国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为: ${post.editTime?string('MMM d,yyyy')}
             </p>
         </div>
     </article>

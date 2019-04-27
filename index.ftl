@@ -12,24 +12,24 @@
 <#import "functions.ftl" as fun>
 <@header title="${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_desc!}"></@header>
 
-<div class="main-content index-page clearfix <#if (options.pinghsu_style_post_list!'one') == 'one'>onelist-page</#if>">
+<div class="main-content index-page clearfix <#if (settings.post_list!'one') == 'one'>onelist-page</#if>">
 	<div class="post-lists">
 		<div class="post-lists-body">
 			<#list posts.content as post>
-                <#if (options.pinghsu_style_post_list!'one') == 'three'>
+                <#if (settings.post_list!'one') == 'three'>
                 <div class="post-list-item">
                     <div class="post-list-item-container">
-                        <#if post.postThumbnail?? && post.postThumbnail!=''>
-                            <div class="item-thumb <#if (options.pinghsu_style_post_color!'false') == 'false'> bg-deepgrey<#else >bg-<@fun.randBgColor /></#if>" style="background-image:url(${post.postThumbnail!});"></div>
+                        <#if post.thumbnail?? && post.thumbnail!=''>
+                            <div class="item-thumb <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor /></#if>" style="background-image:url(${post.thumbnail!});"></div>
                         <#else>
-                            <div class="item-thumb <#if (options.pinghsu_style_post_color!'false') == 'false'> bg-deepgrey<#else >bg-<@fun.randBgColor /></#if>" style="background-image:url(/${themeName}/source/images/thumbs/<@fun.randThumbs/>);"></div>
+                            <div class="item-thumb <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor /></#if>" style="background-image:url(/${theme.folderName}/source/images/thumbs/<@fun.randThumbs/>);"></div>
                         </#if>
                         <a href="${options.blog_url!}/archives/${post.url!}">
                             <div class="item-desc">
-                                <p>${post.postSummary!}</p>
+                                <p>${post.summary!}</p>
                             </div>
                         </a>
-                        <div class="item-slant reverse-slant <#if (options.pinghsu_style_post_color!'false') == 'false'> bg-deepgrey<#else >bg-<@fun.randBgColor /></#if>"></div>
+                        <div class="item-slant reverse-slant <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor /></#if>"></div>
                         <div class="item-slant"></div>
                         <div class="item-label">
                             <div class="item-title">
@@ -37,7 +37,7 @@
                             </div>
                             <div class="item-meta clearfix">
                                 <div class="item-meta-ico bg-ico-<@fun.randBgIco />"
-                                     style="background: url(/${themeName}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+                                     style="background: url(/${theme.folderName}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                                 <div class="item-meta-cat">
                                     <#if post.categories?? && post.categories?size gt 0>
                                         <a href="${options.blog_url!}/categories/${post.categories[0].slugName}">${post.categories[0].name}</a>
@@ -48,14 +48,14 @@
                     </div>
                 </div>
                 </#if>
-                <#if (options.pinghsu_style_post_list!'one') == 'one'>
+                <#if (settings.post_list!'one') == 'one'>
                     <div class="post-onelist-item">
                         <div class="post-onelist-item-container">
                             <a href="${options.blog_url!}/archives/${post.url}">
-                                <#if post.postThumbnail?? && post.postThumbnail!=''>
-                                    <div class="onelist-item-thumb <#if (options.pinghsu_style_post_color!'false') == 'false'> bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>" style="background-image:url(${post.postThumbnail!});"></div>
+                                <#if post.thumbnail?? && post.thumbnail!=''>
+                                    <div class="onelist-item-thumb <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>" style="background-image:url(${post.thumbnail!});"></div>
                                 <#else>
-                                    <div class="onelist-item-thumb <#if (options.pinghsu_style_post_color!'false') == 'false'> bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>" style="background-image:url(/${themeName}/source/images/thumbs/<@fun.randThumbs/>);"></div>
+                                    <div class="onelist-item-thumb <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>" style="background-image:url(/${theme.folderName}/source/images/thumbs/<@fun.randThumbs/>);"></div>
                                 </#if>
                             </a>
                             <div class="onelist-item-info">
@@ -71,9 +71,9 @@
                                     </#if>
                                     </a>
                                 </div>
-                                <div class="item-meta-hr <#if (options.pinghsu_style_post_color!'false') == 'false'> bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>"></div>
+                                <div class="item-meta-hr <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>"></div>
                                 <div class="item-content">
-                                    <p>${post.postSummary!}</p>
+                                    <p>${post.summary!}</p>
                                 </div>
                                 <div class="item-readmore">
                                     <a href="${options.blog_url!}/archives/${post.url!}"> 继续阅读 → </a>
