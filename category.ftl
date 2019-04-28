@@ -1,6 +1,6 @@
 <#include "header.ftl">
 <#import "functions.ftl" as fun>
-<@header title="分类：${category.name!} | ${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_desc!}"></@header>
+<@header title="分类：${category.name!} | ${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_description!}"></@header>
 <div class="main-content common-page clearfix">
     <div class="common-item">
         <div class="common-title">
@@ -11,8 +11,8 @@
 				<#if posts?? && posts.content?size gt 0>
 					<#list posts.content as post>
 						<div class="post-list-item">
-							<div class="post-list-item-container <#if (options.pinghsu_style_post_color!'false') == 'true'>bg-<@fun.randBgColor/></#if>">
-								<div class="item-label <#if (options.pinghsu_style_post_color!'false') == 'true'>bg-<@fun.randBgColor/></#if>">
+							<div class="post-list-item-container <#if settings.post_color!false>bg-<@fun.randBgColor/></#if>">
+								<div class="item-label <#if settings.post_color!false>bg-<@fun.randBgColor/></#if>">
                                     <div class="item-title"><a href="${options.blog_url!}/archives/${post.url!}">${post.title!}</a></div>
 									<div class="item-meta clearfix">
 										<div class="item-meta-ico bg-ico-<@fun.randBgIco/>" style="background: url(/${theme.folderName}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>

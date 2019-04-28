@@ -4,18 +4,18 @@
 	<div class="footer-social">
 		<div class="footer-container clearfix">
 			<div class="social-list">
-                <#if options.pinghsu_sns_weibo??>
-                    <a class="social weibo" target="blank" href="${options.pinghsu_sns_weibo!}">WEIBO</a>
+                <#if setting.sns_weibo??>
+                    <a class="social weibo" target="blank" href="${setting.sns_weibo!}">WEIBO</a>
                 </#if>
-                <#if options.pinghsu_sns_zhihu??>
-                    <a class="social zhihu" target="blank" href="${options.pinghsu_sns_zhihu!}">ZHIHU</a>
+                <#if setting.sns_zhihu??>
+                    <a class="social zhihu" target="blank" href="${setting.sns_zhihu!}">ZHIHU</a>
                 </#if>
                     <a class="social rss" target="blank" href="${options.blog_url!}/feed/">RSS</a>
-                <#if options.pinghsu_sns_github??>
-				    <a class="social github" target="blank" href="${options.pinghsu_sns_github!}">GITHUB</a>
+                <#if setting.sns_github??>
+				    <a class="social github" target="blank" href="${setting.sns_github!}">GITHUB</a>
                 </#if>
-                <#if options.pinghsu_sns_twitter??>
-                    <a class="social twitter" target="blank" href="${options.pinghsu_sns_twitter!}">TWITTER</a>
+                <#if setting.sns_twitter??>
+                    <a class="social twitter" target="blank" href="${setting.sns_twitter!}">TWITTER</a>
                 </#if>
 			</div>
 		</div>
@@ -25,8 +25,8 @@
 			<div class="meta-item meta-copyright">
 				<div class="meta-copyright-info">
                     <a href="${options.blog_url!}" class="info-logo">
-                        <#if options.pinghsu_general_footer_logo??>
-                        <img src="${options.pinghsu_general_footer_logo}" alt="${options.blog_title!}" />
+                        <#if setting.footer_logo??>
+                        <img src="${setting.footer_logo}" alt="${options.blog_title!}" />
                         <#else>
                         ${options.blog_title!}
                         </#if>
@@ -41,17 +41,17 @@
 			</div>
 			<div class="meta-item meta-posts">
 				<h3 class="meta-title">RECENT POSTS</h3>
-                <@fun.getRecentPosts 8/>
+<#--                <@fun.getRecentPosts 8/>-->
 			</div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">RECENT COMMENTS</h3>
-                <@fun.getRecentComments 8 />
+<#--                <@fun.getRecentComments 8 />-->
             </div>
 		</div>
 	</div>
 </footer>
 
-<#if (options.pinghsu_style_post_toc!'false') == 'true' && post??>
+<#if setting.post_toc!false && post??>
 <div id="directory-content" class="directory-content">
     <div id="directory"></div>
 </div>
@@ -150,25 +150,25 @@ postDirectoryBuild();
 <#--<?php $this->footer(); ?>-->
 <script src="//cdnjs.loli.net/ajax/libs/headroom/0.9.1/headroom.min.js"></script>
 
-<#if (options.pinghsu_style_post_highlight!'false') == 'true'>
+<#if setting.post_highlight!false>
 <script src="//cdnjs.loli.net/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
 </#if>
 
 
-<#if (options.pinghsu_general_pjax!'false') == 'true'>
+<#if setting.pjax!false>
 <script src="/${theme.folderName}/source/js/instantclick.min.js?v20140319"></script>
 </#if>
 
-<#if (options.pinghsu_general_fast_click!'false') == 'true'>
+<#if setting.fast_click!false>
 <script src="//cdnjs.loli.net/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
 </#if>
 
 <script>
 
-<#if (options.pinghsu_style_post_toc!'false') == 'true' && post??>
+<#if setting.post_toc!false && post??>
 var postDirectory = new Headroom(document.getElementById("directory-content"), {
     tolerance: 0,
-    <#if (options.pinghsu_style_post_picture!'false') == 'true'>
+    <#if setting.post_picture!false>
     offset : 280,
     <#else>
     offset : 90,
@@ -206,11 +206,11 @@ var header = new Headroom(document.getElementById("header"), {
 });
 header.init();
 
-<#if ((options.pinghsu_general_pjax!'false') == 'true') && ((options.pinghsu_style_post_highlight!'false') == 'true') && post??>
+<#if setting.pjax!false && setting.post_highlight!false && post??>
 hljs.initHighlightingOnLoad();
 </#if>
 
-<#if (options.pinghsu_general_fast_click!'false') == 'true'>
+<#if setting.fast_click!false>
 if ('addEventListener' in document) {
     document.addEventListener('DOMContentLoaded', function() {
         FastClick.attach(document.body);
@@ -219,7 +219,7 @@ if ('addEventListener' in document) {
 </#if>
 </script>
 
-<#if (options.pinghsu_style_post_mathjax!'false') == 'true'>
+<#if setting.post_mathjax!false>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     showProcessingMessages: false,
@@ -245,10 +245,10 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 <#-- 统计代码 -->
 <@statistics />
 
-<#if (options.pinghsu_general_pjax!'false')=='true'>
+<#if setting.pjax!false>
 <script data-no-instant>
 InstantClick.on('change', function(isInitialLoad){
-    <#if (options.pinghsu_style_post_highlight!'false') == 'true'>
+    <#if setting.post_highlight!false>
     var blocks = document.querySelectorAll('pre code');
     for (var i = 0; i < blocks.length; i++) {
         hljs.highlightBlock(blocks[i]);
@@ -256,7 +256,7 @@ InstantClick.on('change', function(isInitialLoad){
     </#if>
 
     if (isInitialLoad === false) {
-    <#if (options.pinghsu_style_post_mathjax!'false') == 'true'>
+    <#if setting.post_mathjax!false>
         if (typeof MathJax !== 'undefined'){MathJax.Hub.Queue(["Typeset",MathJax.Hub]);}
     </#if>
     }

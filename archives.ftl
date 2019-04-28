@@ -1,6 +1,6 @@
 <#include "header.ftl">
 <#import "functions.ftl" as fun>
-<@header title="归档 | ${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_desc!}"></@header>
+<@header title="归档 | ${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_description!}"></@header>
 <div class="main-content archive-page clearfix">
     <div class="categorys-item">
         <@articleTag method="archives">

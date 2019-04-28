@@ -10,7 +10,7 @@
 -->
 <#include "header.ftl">
 <#import "functions.ftl" as fun>
-<@header title="${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_desc!}"></@header>
+<@header title="${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_description!}"></@header>
 
 <div class="main-content index-page clearfix <#if (settings.post_list!'one') == 'one'>onelist-page</#if>">
 	<div class="post-lists">

@@ -5,7 +5,7 @@
 -->
 <#include "header.ftl">
 <#import "functions.ftl" as fun>
-<@header title="分类 | ${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_desc!}"></@header>
+<@header title="分类 | ${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_description!}"></@header>
 <div class="main-content archive-page clearfix">
 	<#if categories?? && categories?size gt 0>
 		<#list categories as cate>

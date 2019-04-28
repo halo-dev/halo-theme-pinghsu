@@ -56,8 +56,8 @@
 
         </div>
 
-        <#if options.pinghsu_general_search_page??>
-        <a href="${options.pinghsu_general_search_page!}" class="navbar-search">
+        <#if settings.search_page??>
+        <a href="${settings.search_page!}" class="navbar-search">
             <span class="icon-search"></span>
         </a>
         <#else>
