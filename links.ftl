@@ -6,13 +6,13 @@
     </div>
     <div id="post-content" class="post-content"><h3>友情链接</h3>
         <ul class="flinks">
-            <@commonTag method="links">
+            <@linkTag method="list">
                 <#if links?? && links?size gt 0>
                     <#list links as link>
-                        <li>🔒 <a href="${link.linkUrl}" target="_blank">${link.linkName}</a></li>
+                        <li>🔒 <a href="${link.url}" target="_blank">${link.name}</a></li>
                     </#list>
                 </#if>
-            </@commonTag>
+            </@linkTag>
         </ul>
     </div>
 </article>

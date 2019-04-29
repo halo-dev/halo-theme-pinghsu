@@ -1,6 +1,6 @@
 <#include "header.ftl">
 <#import "functions.ftl" as fun>
-<@header title="${post.title!} | ${options.blog_title!}" keywords="${post.title!},${options.seo_keywords!},${tagWords!}" description="${post.postSummary!}"></@header>
+<@header title="${post.title!} | ${options.blog_title!}" keywords="${post.title!},${options.seo_keywords!},${tagWords!}" description="${post.summary!}"></@header>
 
 <#if settings.post_picture!false>
     <#if post.thumbnail?? && post.thumbnail!=''>

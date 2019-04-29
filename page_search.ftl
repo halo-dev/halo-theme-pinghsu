@@ -10,16 +10,16 @@
             </span>
         </form>
         <div class="search-tags">
-        <@commonTag method="tags">
+        <@tagTag method="list">
             <#if tags?? && tags?size gt 0>
                 <#list tags as tag>
-                    <a href="${options.blog_url!}/tags/${tag.slugName}" class="<#if !setting.post_color!false> bg-white<#else >text-white bg-<@fun.randBgColor/></#if>"># ${tag.name!}(${tag.posts?size})</a>
+                    <a href="${options.blog_url!}/tags/${tag.slugName}" class="<#if !settings.post_color!false> bg-white<#else >text-white bg-<@fun.randBgColor/></#if>"># ${tag.name!}(${tag.posts?size})</a>
                 </#list>
             <#else>
             <p> Nothing here ! </p>
             </#if>
-        </@commonTag>
-        <div class="search-tags-hr <#if !setting.post_color!false>bg-deepgrey<#else>bg-<@fun.randBgColor/></#if>"></div>
+        </@tagTag>
+        <div class="search-tags-hr <#if !settings.post_color!false>bg-deepgrey<#else>bg-<@fun.randBgColor/></#if>"></div>
         </div>
     </div>
 </div>

@@ -12,7 +12,7 @@
                     <#list posts.content as post>
                         <div class="post-list-item">
                             <div class="post-list-item-container <#if settings.post_color!false>bg-<@fun.randBgColor/></#if>">
-                                <div class="item-label <#if setting.post_color!false>bg-<@fun.randBgColor/></#if>">
+                                <div class="item-label <#if settings.post_color!false>bg-<@fun.randBgColor/></#if>">
                                     <div class="item-title"><a href="${options.blog_url!}/archives/${post.url!}">${post.title!}</a></div>
                                     <div class="item-meta clearfix">
                                         <div class="item-meta-ico bg-ico-<@fun.randBgIco/>" style="background: url(/${theme.folderName}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>

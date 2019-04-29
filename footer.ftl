@@ -4,18 +4,18 @@
 	<div class="footer-social">
 		<div class="footer-container clearfix">
 			<div class="social-list">
-                <#if setting.sns_weibo??>
-                    <a class="social weibo" target="blank" href="${setting.sns_weibo!}">WEIBO</a>
+                <#if settings.sns_weibo??>
+                    <a class="social weibo" target="blank" href="${settings.sns_weibo!}">WEIBO</a>
                 </#if>
-                <#if setting.sns_zhihu??>
-                    <a class="social zhihu" target="blank" href="${setting.sns_zhihu!}">ZHIHU</a>
+                <#if settings.sns_zhihu??>
+                    <a class="social zhihu" target="blank" href="${settings.sns_zhihu!}">ZHIHU</a>
                 </#if>
                     <a class="social rss" target="blank" href="${options.blog_url!}/feed/">RSS</a>
-                <#if setting.sns_github??>
-				    <a class="social github" target="blank" href="${setting.sns_github!}">GITHUB</a>
+                <#if settings.sns_github??>
+				    <a class="social github" target="blank" href="${settings.sns_github!}">GITHUB</a>
                 </#if>
-                <#if setting.sns_twitter??>
-                    <a class="social twitter" target="blank" href="${setting.sns_twitter!}">TWITTER</a>
+                <#if settings.sns_twitter??>
+                    <a class="social twitter" target="blank" href="${settings.sns_twitter!}">TWITTER</a>
                 </#if>
 			</div>
 		</div>
@@ -25,8 +25,8 @@
 			<div class="meta-item meta-copyright">
 				<div class="meta-copyright-info">
                     <a href="${options.blog_url!}" class="info-logo">
-                        <#if setting.footer_logo??>
-                        <img src="${setting.footer_logo}" alt="${options.blog_title!}" />
+                        <#if settings.footer_logo??>
+                        <img src="${settings.footer_logo}" alt="${options.blog_title!}" />
                         <#else>
                         ${options.blog_title!}
                         </#if>
@@ -51,7 +51,7 @@
 	</div>
 </footer>
 
-<#if setting.post_toc!false && post??>
+<#if settings.post_toc!false && post??>
 <div id="directory-content" class="directory-content">
     <div id="directory"></div>
 </div>
@@ -150,25 +150,25 @@ postDirectoryBuild();
 <#--<?php $this->footer(); ?>-->
 <script src="//cdnjs.loli.net/ajax/libs/headroom/0.9.1/headroom.min.js"></script>
 
-<#if setting.post_highlight!false>
+<#if settings.post_highlight!false>
 <script src="//cdnjs.loli.net/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
 </#if>
 
 
-<#if setting.pjax!false>
+<#if settings.pjax!false>
 <script src="/${theme.folderName}/source/js/instantclick.min.js?v20140319"></script>
 </#if>
 
-<#if setting.fast_click!false>
+<#if settings.fast_click!false>
 <script src="//cdnjs.loli.net/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
 </#if>
 
 <script>
 
-<#if setting.post_toc!false && post??>
+<#if settings.post_toc!false && post??>
 var postDirectory = new Headroom(document.getElementById("directory-content"), {
     tolerance: 0,
-    <#if setting.post_picture!false>
+    <#if settings.post_picture!false>
     offset : 280,
     <#else>
     offset : 90,
@@ -206,11 +206,11 @@ var header = new Headroom(document.getElementById("header"), {
 });
 header.init();
 
-<#if setting.pjax!false && setting.post_highlight!false && post??>
+<#if settings.pjax!false && settings.post_highlight!false && post??>
 hljs.initHighlightingOnLoad();
 </#if>
 
-<#if setting.fast_click!false>
+<#if settings.fast_click!false>
 if ('addEventListener' in document) {
     document.addEventListener('DOMContentLoaded', function() {
         FastClick.attach(document.body);
@@ -219,7 +219,7 @@ if ('addEventListener' in document) {
 </#if>
 </script>
 
-<#if setting.post_mathjax!false>
+<#if settings.post_mathjax!false>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     showProcessingMessages: false,
@@ -245,10 +245,10 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 <#-- 统计代码 -->
 <@statistics />
 
-<#if setting.pjax!false>
+<#if settings.pjax!false>
 <script data-no-instant>
 InstantClick.on('change', function(isInitialLoad){
-    <#if setting.post_highlight!false>
+    <#if settings.post_highlight!false>
     var blocks = document.querySelectorAll('pre code');
     for (var i = 0; i < blocks.length; i++) {
         hljs.highlightBlock(blocks[i]);
@@ -256,7 +256,7 @@ InstantClick.on('change', function(isInitialLoad){
     </#if>
 
     if (isInitialLoad === false) {
-    <#if setting.post_mathjax!false>
+    <#if settings.post_mathjax!false>
         if (typeof MathJax !== 'undefined'){MathJax.Hub.Queue(["Typeset",MathJax.Hub]);}
     </#if>
     }
