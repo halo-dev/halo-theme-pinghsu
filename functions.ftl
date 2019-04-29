@@ -17,14 +17,15 @@ ${randomMethod(0,10)}.jpg
 
 <#-- 最近发布的文章 -->
 <#macro getRecentPosts size>
-<#assign posts = recentPostsMethod(size) />
-<#if posts?? && posts?size gt 0>
-    <#list posts as post>
-    <li><a href="${options.blog_url!}/archives/${post.url!}">${post.title!}</a></li>
-    </#list>
-<#else>
-    <li><a href="javascript:void(0)">暂无文章</a></li>
-</#if>
+<@postTag method="latest" top="${size}">
+    <#if posts?? && posts?size gt 0>
+        <#list posts as post>
+        <li><a href="${options.blog_url!}/archives/${post.url!}">${post.title!}</a></li>
+        </#list>
+    <#else>
+        <li><a href="javascript:void(0)">暂无文章</a></li>
+    </#if>
+</@postTag>
 </#macro>
 
 <#-- 最近发布的评论 -->
