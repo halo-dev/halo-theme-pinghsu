@@ -150,7 +150,7 @@ postDirectoryBuild();
 <#--<?php $this->footer(); ?>-->
 <script src="//cdnjs.loli.net/ajax/libs/headroom/0.9.1/headroom.min.js"></script>
 
-<#if settings.post_highlight!false>
+<#if settings.post_highlight!true>
 <script src="//cdnjs.loli.net/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
 </#if>
 
@@ -206,7 +206,7 @@ var header = new Headroom(document.getElementById("header"), {
 });
 header.init();
 
-<#if settings.pjax!false && settings.post_highlight!false && post??>
+<#if settings.pjax!false && settings.post_highlight!true && post??>
 hljs.initHighlightingOnLoad();
 </#if>
 
@@ -248,7 +248,7 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 <#if settings.pjax!false>
 <script data-no-instant>
 InstantClick.on('change', function(isInitialLoad){
-    <#if settings.post_highlight!false>
+    <#if settings.post_highlight!true>
     var blocks = document.querySelectorAll('pre code');
     for (var i = 0; i < blocks.length; i++) {
         hljs.highlightBlock(blocks[i]);

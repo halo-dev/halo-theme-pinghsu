@@ -11,7 +11,7 @@
 		<#list categories as cate>
             <div class="categorys-item">
                 <div class="categorys-title">
-                    <a href="${options.blog_url!}/categories/${cate.slugName!}">${cate.name!}</a><span> ：${cate.posts?size}</span>
+                    <a href="${options.blog_url!}/categories/${cate.slugName!}">${cate.name!}</a><span> ：${cate.postCount!0}</span>
                 </div>
                 <#if cate.posts?? && cate.posts?size gt 0>
             		<div class="post-lists">
