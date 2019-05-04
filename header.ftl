@@ -17,8 +17,7 @@
     <meta http-equiv="Cache-Control" content="no-transform"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
 
-    <@verification></@verification>
-    <@favicon></@favicon>
+    <@globalHeader />
 
     <title>${title!}</title>
     <meta name="keywords" content="${keywords!}" />

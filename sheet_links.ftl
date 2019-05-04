@@ -20,4 +20,5 @@
     </div>
 </article>
 <#include "comment.ftl">
+<@comment post=sheet type="sheet" />
 <#include "footer.ftl">
