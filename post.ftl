@@ -24,7 +24,7 @@
                     <div class="post-tags">
                         <#if post.tags?? && post.tags?size gt 0>
                             <#list post.tags as tag>
-                                <a href="${options.blog_url}/tags/${tag.slugName!}">${tag.name!}</a>
+                                <a href="${options.blog_url!}/tags/${tag.slugName!}">${tag.name!}</a>
                             </#list>
                         </#if>
                     </div>
@@ -52,7 +52,7 @@
                     <div class="post-tags">
                         <#if post.tags?? && post.tags?size gt 0>
                             <#list post.tags as tag>
-                                <a href="${options.blog_url}/tags/${tag.slugName!}">${tag.name!}</a>
+                                <a href="${options.blog_url!}/tags/${tag.slugName!}">${tag.name!}</a>
                             </#list>
                         </#if>
                     </div>
@@ -81,7 +81,7 @@
             <p class="post-tags">
                 <#if post.tags?? && post.tags?size gt 0>
                     <#list post.tags as tag>
-                        <a href="${options.blog_url}/tags/${tag.slugName!}">${tag.name!}</a>
+                        <a href="${options.blog_url!}/tags/${tag.slugName!}">${tag.name!}</a>
                     </#list>
                 </#if>
             </p>
@@ -98,22 +98,22 @@
             <div class="bottom-bar-items social-share left">
                 <span class="bottom-bar-item">Share : </span>
                 <span class="bottom-bar-item bottom-bar-facebook">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=${options.blog_url}/archives/${post.url!}" target="_blank" title="${post.title!}" rel="nofollow">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=${options.blog_url!}/archives/${post.url!}" target="_blank" title="${post.title!}" rel="nofollow">
                         facebook
                     </a>
                 </span>
                 <span class="bottom-bar-item bottom-bar-twitter">
-                    <a href="https://twitter.com/intent/tweet?url=${options.blog_url}/archives/${post.url!}&text=${post.title!}" target="_blank" title="${post.title!}" rel="nofollow">
+                    <a href="https://twitter.com/intent/tweet?url=${options.blog_url!}/archives/${post.url!}&text=${post.title!}" target="_blank" title="${post.title!}" rel="nofollow">
                         Twitter
                     </a>
                 </span>
                 <span class="bottom-bar-item bottom-bar-weibo">
-                    <a href="http://service.weibo.com/share/share.php?url=${options.blog_url}/archives/${post.url!}&amp;title=${post.title!}" target="_blank" title="${post.title!}" rel="nofollow">
+                    <a href="http://service.weibo.com/share/share.php?url=${options.blog_url!}/archives/${post.url!}&amp;title=${post.title!}" target="_blank" title="${post.title!}" rel="nofollow">
                         Weibo
                     </a>
                 </span>
                 <span class="bottom-bar-item bottom-bar-qrcode">
-                    <a href="//pan.baidu.com/share/qrcode?w=300&amp;h=300&amp;url=${options.blog_url}/archives/${post.url!}" target="_blank" rel="nofollow">
+                    <a href="//pan.baidu.com/share/qrcode?w=300&amp;h=300&amp;url=${options.blog_url!}/archives/${post.url!}" target="_blank" rel="nofollow">
                         QRcode
                     </a>
                 </span>
