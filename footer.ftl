@@ -34,7 +34,7 @@
 					<div class="info-text">
                     	<p>Theme is <a href="https://github.com/chakhsu/pinghsu" target="_blank">Pinghsu</a> by <a href="https://www.linpx.com/" target="_blank">Chakhsu</a></p>
 						<p>Powered by <a href="https://github.com/halo-dev/halo" target="_blank" rel="nofollow">Halo</a></p>
-						<p>&copy; ${.now?string["yyyy"]} <a href="${options.blog_url!}">${options.blog_title!}</a></p>
+						<p>&copy; ${.now?string("yyyy")} <a href="${options.blog_url!}">${options.blog_title!}</a></p>
                         <p><@footer_info></@footer_info></p>
 					</div>
 				</div>
@@ -51,7 +51,7 @@
 	</div>
 </footer>
 
-<#if settings.post_toc!false && post??>
+<#if (settings.post_toc!false) && post??>
 <div id="directory-content" class="directory-content">
     <div id="directory"></div>
 </div>
@@ -165,7 +165,7 @@ postDirectoryBuild();
 
 <script>
 
-<#if settings.post_toc!false && post??>
+<#if (settings.post_toc!false) && post??>
 var postDirectory = new Headroom(document.getElementById("directory-content"), {
     tolerance: 0,
     <#if settings.post_picture!false>
@@ -206,7 +206,7 @@ var header = new Headroom(document.getElementById("header"), {
 });
 header.init();
 
-<#if settings.pjax!false && settings.post_highlight!true && post??>
+<#if (settings.pjax!false) && (settings.post_highlight!true) && post??>
 hljs.initHighlightingOnLoad();
 </#if>
 
