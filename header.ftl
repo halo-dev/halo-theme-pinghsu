@@ -24,7 +24,7 @@
     <meta name="description" content="${description!}" />
 
     <link href="//cdnjs.loli.net/ajax/libs/highlight.js/9.10.0/styles/xcode.min.css" rel="stylesheet">
-    <link href="/${theme.folderName}/source/css/style.min.css" rel="stylesheet">
+    <link href="/${static!}/source/css/style.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="//cdnjs.loli.net/ajax/libs/html5shiv/r29/html5.min.js"></script>
     <script src="//cdnjs.loli.net/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -38,7 +38,7 @@
 <![endif]-->
 <header id="header" class="header bg-white">
     <div class="navbar-container">
-        <a href="${options.blog_url!}" class="navbar-logo">
+        <a href="${ctx!}" class="navbar-logo">
             <#if options.blog_logo??>
             <img src="${options.blog_logo!}" alt="${options.blog_title!}" />
             <#else>
@@ -62,7 +62,7 @@
         <#else>
         <div class="navbar-search" onclick="">
             <span class="icon-search"></span>
-            <form id="search" method="get" action="${options.blog_url!}/search" role="search">
+            <form id="search" method="get" action="${ctx!}/search" role="search">
                 <span class="search-box">
                     <input type="text" id="input" class="input" name="keyword" required="true" placeholder="Search..." maxlength="30" autocomplete="off">
                 </span>

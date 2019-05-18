@@ -10,7 +10,7 @@
                 <#if settings.sns_zhihu??>
                     <a class="social zhihu" target="blank" href="${settings.sns_zhihu!}">ZHIHU</a>
                 </#if>
-                    <a class="social rss" target="blank" href="${options.blog_url!}/feed/">RSS</a>
+                    <a class="social rss" target="blank" href="${ctx!}/feed/">RSS</a>
                 <#if settings.sns_github??>
 				    <a class="social github" target="blank" href="${settings.sns_github!}">GITHUB</a>
                 </#if>
@@ -24,7 +24,7 @@
 		<div class="footer-container">
 			<div class="meta-item meta-copyright">
 				<div class="meta-copyright-info">
-                    <a href="${options.blog_url!}" class="info-logo">
+                    <a href="${ctx!}" class="info-logo">
                         <#if settings.footer_logo??>
                         <img src="${settings.footer_logo}" alt="${options.blog_title!}" />
                         <#else>
@@ -34,7 +34,7 @@
 					<div class="info-text">
                     	<p>Theme is <a href="https://github.com/chakhsu/pinghsu" target="_blank">Pinghsu</a> by <a href="https://www.linpx.com/" target="_blank">Chakhsu</a></p>
 						<p>Powered by <a href="https://github.com/halo-dev/halo" target="_blank" rel="nofollow">Halo</a></p>
-						<p>&copy; ${.now?string("yyyy")} <a href="${options.blog_url!}">${options.blog_title!}</a></p>
+						<p>&copy; ${.now?string("yyyy")} <a href="${ctx!}">${options.blog_title!}</a></p>
                         <p><@footer_info></@footer_info></p>
 					</div>
 				</div>
@@ -156,7 +156,7 @@ postDirectoryBuild();
 
 
 <#if settings.pjax!false>
-<script src="/${theme.folderName}/source/js/instantclick.min.js?v20140319"></script>
+<script src="/${static!}/source/js/instantclick.min.js?v20140319"></script>
 </#if>
 
 <#if settings.fast_click!false>

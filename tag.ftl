@@ -13,9 +13,9 @@
 						<div class="post-list-item">
 							<div class="post-list-item-container <#if settings.post_color!false>bg-<@fun.randBgColor/></#if>">
 								<div class="item-label <#if settings.post_color!false>bg-<@fun.randBgColor/></#if>">
-                                    <div class="item-title"><a href="${options.blog_url!}/archives/${post.url!}">${post.title!}</a></div>
+                                    <div class="item-title"><a href="${ctx!}/archives/${post.url!}">${post.title!}</a></div>
 									<div class="item-meta clearfix">
-										<div class="item-meta-ico bg-ico-<@fun.randBgIco/>" style="background: url(/${theme.folderName}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+										<div class="item-meta-ico bg-ico-<@fun.randBgIco/>" style="background: url(/${static!}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
 										<div class="item-meta-date"> ${post.createTime?string('MMM d,yyyy')} </div>
 									</div>
 								</div>
@@ -34,28 +34,28 @@
                 <#if posts.hasPrevious()>
 					<#if posts.number == 1>
                         <li class="prev">
-                            <a href="${options.blog_url!}/tags/${tag.slugName!}">←</a>
+                            <a href="${ctx!}/tags/${tag.slugName!}">←</a>
                         </li>
 					<#else>
                         <li class="prev">
-                            <a href="${options.blog_url!}/tags/${tag.slugName!}/page/${posts.number}">←</a>
+                            <a href="${ctx!}/tags/${tag.slugName!}/page/${posts.number}">←</a>
                         </li>
 					</#if>
 				</#if>
                 <#list rainbow as r>
 					<#if r == posts.number+1>
                         <li class="current">
-                            <a href="${options.blog_url!}/tags/${tag.slugName!}/page/${r}">${r}</a>
+                            <a href="${ctx!}/tags/${tag.slugName!}/page/${r}">${r}</a>
                         </li>
 					<#else>
                         <li>
-                            <a href="${options.blog_url!}/tags/${tag.slugName!}/page/${r}">${r}</a>
+                            <a href="${ctx!}/tags/${tag.slugName!}/page/${r}">${r}</a>
                         </li>
 					</#if>
 				</#list>
                 <#if posts.hasNext()>
                     <li class="next">
-                        <a href="${options.blog_url!}/tags/${tag.slugName!}/page/${posts.number+2}">→</a>
+                        <a href="${ctx!}/tags/${tag.slugName!}/page/${posts.number+2}">→</a>
                     </li>
 				</#if>
             </ol>

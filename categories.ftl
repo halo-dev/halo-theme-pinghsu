@@ -12,7 +12,7 @@
 			<#list categories as cate>
 				<div class="categorys-item">
 					<div class="categorys-title">
-						<a href="${options.blog_url!}/categories/${cate.slugName!}">${cate.name!}</a><span> ：${cate.postCount!0}</span>
+						<a href="${ctx!}/categories/${cate.slugName!}">${cate.name!}</a><span> ：${cate.postCount!0}</span>
 					</div>
 					<@postTag method="listByCategoryId" categoryId="${cate.id!}">
 						<#if posts?? && posts?size gt 0>
@@ -22,7 +22,7 @@
 										<div class="post-list-item">
 											<div class="post-list-item-container">
 												<div class="item-label">
-													<div class="item-title"><a href="${options.blog_url!}/archives/${post.url!}">${post.title!}</a></div>
+													<div class="item-title"><a href="${ctx!}/archives/${post.url!}">${post.title!}</a></div>
 													<div class="item-meta clearfix">
 														<div class="item-meta-date"> ${post.createTime?string('MMM d,yyyy')} </div>
 													</div>
