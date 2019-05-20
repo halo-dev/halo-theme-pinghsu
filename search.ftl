@@ -13,9 +13,9 @@
                         <div class="post-list-item">
                             <div class="post-list-item-container <#if settings.post_color!false>bg-<@fun.randBgColor/></#if>">
                                 <div class="item-label <#if settings.post_color!false>bg-<@fun.randBgColor/></#if>">
-                                    <div class="item-title"><a href="${ctx!}/archives/${post.url!}">${post.title!}</a></div>
+                                    <div class="item-title"><a href="${context!}/archives/${post.url!}">${post.title!}</a></div>
                                     <div class="item-meta clearfix">
-                                        <div class="item-meta-ico bg-ico-<@fun.randBgIco/>" style="background: url(/${static!}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+                                        <div class="item-meta-ico bg-ico-<@fun.randBgIco/>" style="background: url(${static!}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                                         <div class="item-meta-date"> ${post.createTime?string('MMM d,yyyy')} </div>
                                     </div>
                                 </div>
@@ -34,28 +34,28 @@
                 <#if posts.hasPrevious()>
                     <#if posts.number == 1>
                         <li class="prev">
-                            <a href="${ctx!}/search?keyword=${keyword}">←</a>
+                            <a href="${context!}/search?keyword=${keyword}">←</a>
                         </li>
                     <#else>
                         <li class="prev">
-                            <a href="${ctx!}/search/page/${posts.number}?keyword=${keyword}">←</a>
+                            <a href="${context!}/search/page/${posts.number}?keyword=${keyword}">←</a>
                         </li>
                     </#if>
                 </#if>
                 <#list rainbow as r>
                     <#if r == posts.number+1>
                         <li class="current">
-                            <a href="${ctx!}/search/page/${r}?keyword=${keyword}">${r}</a>
+                            <a href="${context!}/search/page/${r}?keyword=${keyword}">${r}</a>
                         </li>
                     <#else>
                         <li>
-                            <a href="${ctx!}/search/page/${r}?keyword=${keyword}">${r}</a>
+                            <a href="${context!}/search/page/${r}?keyword=${keyword}">${r}</a>
                         </li>
                     </#if>
                 </#list>
                 <#if posts.hasNext()>
                     <li class="next">
-                        <a href="${ctx!}/search/page/${posts.number+2}?keyword=${keyword}">→</a>
+                        <a href="${context!}/search/page/${posts.number+2}?keyword=${keyword}">→</a>
                     </li>
                 </#if>
             </ol>

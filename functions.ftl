@@ -20,7 +20,7 @@ ${randomMethod(0,10)}.jpg
 <@postTag method="latest" top="${size}">
     <#if posts?? && posts?size gt 0>
         <#list posts as post>
-        <li><a href="${ctx!}/archives/${post.url!}">${post.title!}</a></li>
+        <li><a href="${context!}/archives/${post.url!}">${post.title!}</a></li>
         </#list>
     <#else>
         <li><a href="javascript:void(0)">暂无文章</a></li>
@@ -33,7 +33,7 @@ ${randomMethod(0,10)}.jpg
 <#assign comments = recentCommentsMethod(size) />
 <#if comments?? && comments?size gt 0>
     <#list comments as comment>
-        <li><a href="${ctx!}/archives/${comment.post.url!}#comment-id-${comment.commentId?c}">${comment.commentAuthor!} : <#if comment.commentContent?length gt 60>${comment.commentContent?substring(0,60)}...<#else>${comment.commentContent!}</#if></a></li>
+        <li><a href="${context!}/archives/${comment.post.url!}#comment-id-${comment.commentId?c}">${comment.commentAuthor!} : <#if comment.commentContent?length gt 60>${comment.commentContent?substring(0,60)}...<#else>${comment.commentContent!}</#if></a></li>
     </#list>
 <#else>
     <li><a href="javascript:void(0)">暂无评论</a></li>

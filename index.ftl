@@ -22,9 +22,9 @@
                         <#if post.thumbnail?? && post.thumbnail!=''>
                             <div class="item-thumb <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor /></#if>" style="background-image:url(${post.thumbnail!});"></div>
                         <#else>
-                            <div class="item-thumb <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor /></#if>" style="background-image:url(/${static!}/source/images/thumbs/<@fun.randThumbs/>);"></div>
+                            <div class="item-thumb <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor /></#if>" style="background-image:url(${static!}/source/images/thumbs/<@fun.randThumbs/>);"></div>
                         </#if>
-                        <a href="${ctx!}/archives/${post.url!}">
+                        <a href="${context!}/archives/${post.url!}">
                             <div class="item-desc">
                                 <p>${post.summary!}</p>
                             </div>
@@ -33,14 +33,14 @@
                         <div class="item-slant"></div>
                         <div class="item-label">
                             <div class="item-title">
-                                <a href="${ctx!}/archives/${post.url!}">${post.title!}</a>
+                                <a href="${context!}/archives/${post.url!}">${post.title!}</a>
                             </div>
                             <div class="item-meta clearfix">
                                 <div class="item-meta-ico bg-ico-<@fun.randBgIco />"
-                                     style="background: url(/${static!}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+                                     style="background: url(${static!}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
                                 <div class="item-meta-cat">
                                     <#if post.categories?? && post.categories?size gt 0>
-                                        <a href="${ctx!}/categories/${post.categories[0].slugName}">${post.categories[0].name}</a>
+                                        <a href="${context!}/categories/${post.categories[0].slugName}">${post.categories[0].name}</a>
                                     </#if>
                                 </div>
                             </div>
@@ -51,23 +51,23 @@
                 <#if (settings.post_list!'one') == 'one'>
                     <div class="post-onelist-item">
                         <div class="post-onelist-item-container">
-                            <a href="${ctx!}/archives/${post.url}">
+                            <a href="${context!}/archives/${post.url}">
                                 <#if post.thumbnail?? && post.thumbnail!=''>
                                     <div class="onelist-item-thumb <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>" style="background-image:url(${post.thumbnail!});"></div>
                                 <#else>
-                                    <div class="onelist-item-thumb <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>" style="background-image:url(/${static!}/source/images/thumbs/<@fun.randThumbs/>);"></div>
+                                    <div class="onelist-item-thumb <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>" style="background-image:url(${static!}/source/images/thumbs/<@fun.randThumbs/>);"></div>
                                 </#if>
                             </a>
                             <div class="onelist-item-info">
                                 <div class="item-title">
-                                    <a href="${ctx!}/archives/${post.url}">${post.title!}</a>
+                                    <a href="${context!}/archives/${post.url}">${post.title!}</a>
                                 </div>
                                 <div class="item-meta">
                                     <time datetime="${post.createTime}" itemprop="datePublished">
                                         发布于 ${post.createTime?string('MMM d,yyyy')}
                                     </time>in
                                     <#if post.categories?? && post.categories?size gt 0>
-                                        <a href="${ctx!}/categories/${post.categories[0].slugName}">${post.categories[0].name}</a>
+                                        <a href="${context!}/categories/${post.categories[0].slugName}">${post.categories[0].name}</a>
                                     </#if>
                                     </a>
                                 </div>
@@ -76,7 +76,7 @@
                                     <p>${post.summary!}</p>
                                 </div>
                                 <div class="item-readmore">
-                                    <a href="${ctx!}/archives/${post.url!}"> 继续阅读 → </a>
+                                    <a href="${context!}/archives/${post.url!}"> 继续阅读 → </a>
                                 </div>
                             </div>
                         </div>
@@ -91,28 +91,28 @@
                 <#if posts.hasPrevious()>
                     <#if posts.number == 1>
                         <li class="pre">
-                            <a href="${ctx!}/">←</a>
+                            <a href="${context!}/">←</a>
                         </li>
                     <#else>
                         <li class="pre">
-                            <a href="${ctx!}/page/${posts.number}">←</a>
+                            <a href="${context!}/page/${posts.number}">←</a>
                         </li>
                     </#if>
                 </#if>
                 <#list rainbow as r>
                     <#if r == posts.number+1>
                         <li class="current">
-                            <a href="${ctx!}/page/${r}">${r}</a>
+                            <a href="${context!}/page/${r}">${r}</a>
                         </li>
                     <#else>
                         <li>
-                            <a href="${ctx!}/page/${r}">${r}</a>
+                            <a href="${context!}/page/${r}">${r}</a>
                         </li>
                     </#if>
                 </#list>
                 <#if posts.hasNext()>
                     <li class="next">
-                        <a href="${ctx!}/page/${posts.number+2}/">→</a>
+                        <a href="${context!}/page/${posts.number+2}/">→</a>
                     </li>
                 </#if>
             </ol>
