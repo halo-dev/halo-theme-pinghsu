@@ -61,7 +61,7 @@
         </div>
     </#if>
 </#if>
-    <article class="main-content <#if !settings.post_picture!false>post-page<#else>page-page</#if>" itemscope itemtype="http://schema.org/Article">
+    <article class="main-content <#if settings.post_picture!false>post-page<#else>page-page</#if>" itemscope itemtype="http://schema.org/Article">
         <div class="post-header">
             <h1 class="post-title" itemprop="name headline">
                 ${post.title!}
