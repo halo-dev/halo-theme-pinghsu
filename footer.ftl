@@ -4,17 +4,17 @@
 	<div class="footer-social">
 		<div class="footer-container clearfix">
 			<div class="social-list">
-                <#if settings.sns_weibo??>
+                <#if settings.weibo??>
                     <a class="social weibo" target="blank" href="${settings.sns_weibo!}">WEIBO</a>
                 </#if>
-                <#if settings.sns_zhihu??>
+                <#if settings.zhihu??>
                     <a class="social zhihu" target="blank" href="${settings.sns_zhihu!}">ZHIHU</a>
                 </#if>
                     <a class="social rss" target="blank" href="${context!}/feed/">RSS</a>
-                <#if settings.sns_github??>
+                <#if settings.github??>
 				    <a class="social github" target="blank" href="${settings.sns_github!}">GITHUB</a>
                 </#if>
-                <#if settings.sns_twitter??>
+                <#if settings.twitter??>
                     <a class="social twitter" target="blank" href="${settings.sns_twitter!}">TWITTER</a>
                 </#if>
 			</div>

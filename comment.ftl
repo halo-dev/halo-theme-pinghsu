@@ -1,6 +1,7 @@
 <style>
     .comment-container{
         margin:0 10px;
+        z-index: 3!important;
     }
 </style>
 <#macro comment post,type>
