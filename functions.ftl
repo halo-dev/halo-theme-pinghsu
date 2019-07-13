@@ -30,12 +30,14 @@ ${randomMethod(0,10)}.jpg
 
 <#-- 最近发布的评论 -->
 <#macro getRecentComments size>
-<#assign comments = recentCommentsMethod(size) />
-<#if comments?? && comments?size gt 0>
-    <#list comments as comment>
-        <li><a href="${context!}/archives/${comment.post.url!}#comment-id-${comment.commentId?c}">${comment.commentAuthor!} : <#if comment.commentContent?length gt 60>${comment.commentContent?substring(0,60)}...<#else>${comment.commentContent!}</#if></a></li>
-    </#list>
-<#else>
-    <li><a href="javascript:void(0)">暂无评论</a></li>
-</#if>
+<@commentTag method="latest" top="${size}">
+    <#if comments?? && comments.getTotalElements() gt 0>
+        <#list comments.content as comment>
+            <li><a href="javascript:void(0);">${comment.author!} : ${comment.content!}</a></li>
+        </#list>
+    <#else>
+        <li><a href="javascript:void(0)">暂无评论</a></li>
+    </#if>
+</@commentTag>
 </#macro>
+

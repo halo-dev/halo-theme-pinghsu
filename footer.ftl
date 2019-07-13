@@ -45,7 +45,7 @@
 			</div>
             <div class="meta-item meta-comments">
                 <h3 class="meta-title">RECENT COMMENTS</h3>
-<#--                <@fun.getRecentComments 8 />-->
+                <@fun.getRecentComments 8 />
             </div>
 		</div>
 	</div>
