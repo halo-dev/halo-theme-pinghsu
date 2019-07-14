@@ -33,7 +33,11 @@ ${randomMethod(0,10)}.jpg
 <@commentTag method="latest" top="${size}">
     <#if comments?? && comments.getTotalElements() gt 0>
         <#list comments.content as comment>
-            <li><a href="javascript:void(0);">${comment.author!} : ${comment.content!}</a></li>
+            <#if comment.post??>
+                <li><a href="${context!}/archives/${comment.post.url!}#${comment.id}">${comment.author!} : ${comment.content!}</a></li>
+            <#else>
+                <li><a href="javascript:void(0);">${comment.author!} : ${comment.content!}</a></li>
+            </#if>
         </#list>
     <#else>
         <li><a href="javascript:void(0)">暂无评论</a></li>
