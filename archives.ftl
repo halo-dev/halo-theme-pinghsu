@@ -6,7 +6,7 @@
         <@postTag method="archiveMonth">
             <#list archives as archive>
                 <div class="categorys-item">
-                    <div class="categorys-title">${archive.month!}月 ${archive.year!}</div>
+                    <div class="categorys-title">${archive.month!}月 ${archive.year?c}</div>
                     <#if archive.posts?? && archive.posts?size gt 0>
                         <div class="post-lists">
                             <div class="post-lists-body">
