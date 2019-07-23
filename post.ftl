@@ -50,8 +50,8 @@
                         with<a href="#comments"> ${comments.totalElements} comment</a>
                     </div>
                     <div class="post-tags">
-                        <#if post.tags?? && post.tags?size gt 0>
-                            <#list post.tags as tag>
+                        <#if tags?? && tags?size gt 0>
+                            <#list tags as tag>
                                 <a href="${context!}/tags/${tag.slugName!}">${tag.name!}</a>
                             </#list>
                         </#if>
@@ -79,8 +79,8 @@
         </div>
         <div id="post-content" class="post-content" itemprop="articleBody">
             <p class="post-tags">
-                <#if post.tags?? && post.tags?size gt 0>
-                    <#list post.tags as tag>
+                <#if tags?? && tags?size gt 0>
+                    <#list tags as tag>
                         <a href="${context!}/tags/${tag.slugName!}">${tag.name!}</a>
                     </#list>
                 </#if>
