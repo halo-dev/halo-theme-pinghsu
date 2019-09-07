@@ -40,7 +40,7 @@
     <div class="navbar-container">
         <a href="${context!}" class="navbar-logo">
             <#if options.blog_logo??>
-            <img src="${options.blog_logo!}" alt="${options.blog_title!}" />
+            <img src="${options.blog_logo!}" title="${options.blog_title!}" />
             <#else>
             ${options.blog_title!}
             </#if>
