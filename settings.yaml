@@ -4,7 +4,7 @@ general:
     footer_logo:
       name: footer_logo
       label: 页尾 logo
-      type: text
+      type: attachment
     search_page:
       name: search_page
       label: 搜索页地址
