@@ -87,7 +87,7 @@
             </p>
             ${post.formatContent!}
             <p class="post-info">
-                本文由 <a href="${context!}/">${user.nickname!}</a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a>
+                本文由 <a href="${context!}/"><b>${user.nickname!}</b></a> 创作，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="external nofollow">知识共享署名4.0</a>
                 国际许可协议进行许可<br>本站文章除注明转载/出处外，均为本站原创或翻译，转载前请务必署名<br>最后编辑时间为: ${post.editTime?string('MMM d,yyyy')}
             </p>
         </div>
@@ -112,11 +112,11 @@
                         Weibo
                     </a>
                 </span>
-                <span class="bottom-bar-item bottom-bar-qrcode">
+                <#--  <span class="bottom-bar-item bottom-bar-qrcode">
                     <a href="//pan.baidu.com/share/qrcode?w=300&amp;h=300&amp;url=${context!}/archives/${post.url!}" target="_blank" rel="nofollow">
                         QRcode
                     </a>
-                </span>
+                </span>  -->
             </div>
             <div class="bottom-bar-items right">
                 <span class="bottom-bar-item">
