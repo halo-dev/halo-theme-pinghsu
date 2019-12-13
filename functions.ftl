@@ -10,6 +10,12 @@ ${bgColor[randomMethod(0,6)]}
 ${bgColor[randomMethod(0,10)]}
 </#macro>
 
+<#-- 显示图标 -->
+<#macro showBgIco postId>
+<#assign bgColor=['book','game','note','chat','code','image','web','link','design','lock']/>
+${bgColor[postId % 10]}
+</#macro>
+
 <#-- 随机缩略图 -->
 <#macro randThumbs>
 ${randomMethod(0,10)}.jpg
