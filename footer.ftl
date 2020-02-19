@@ -33,7 +33,7 @@
                     </a>
 					<div class="info-text">
                     	<p>Theme is <a href="https://github.com/chakhsu/pinghsu" target="_blank">Pinghsu</a> by <a href="https://www.linpx.com/" target="_blank">Chakhsu</a></p>
-						<p>Powered by <a href="https://github.com/halo-dev/halo" target="_blank" rel="nofollow">Halo</a></p>
+						<p>Powered by <a href="https://halo.run" target="_blank" rel="nofollow">Halo</a></p>
 						<p>&copy; ${.now?string("yyyy")} <a href="${context!}">${options.blog_title!}</a></p>
                         <p><@footer_info></@footer_info></p>
 					</div>
