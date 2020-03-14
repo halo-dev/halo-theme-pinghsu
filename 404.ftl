@@ -8,7 +8,7 @@
     <meta http-equiv="Cache-Control" content="no-transform"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
     <link rel="shortcut icon" href="${options.blog_favicon!}">
-    <title>Nothing here - ${options.blog_title!}</title>
+    <title>Nothing here - ${blog_title!}</title>
     <style>
         body{
             margin:0;padding:0;
@@ -129,7 +129,7 @@
         <section>
             <div class="title404">
                 <p>I have no secret of success but hard work.</p>
-            </div><a href="${context!}" class="index404">Back Home</a>
+            </div><a href="${blog_url!}" class="index404">Back Home</a>
         </section>
     </div>
 </div>
