@@ -40,7 +40,7 @@ ${randomMethod(0,10)}.jpg
     <#if comments?? && comments.getTotalElements() gt 0>
         <#list comments.content as comment>
             <#if comment.post??>
-                <li><a href="${context!}/archives/${comment.post.url!}#${comment.id}">${comment.author!} : ${comment.content!}</a></li>
+                <li><a href="${comment.post.fullPath!}#${comment.id}">${comment.author!} : ${comment.content!}</a></li>
             <#else>
                 <li><a href="javascript:void(0);">${comment.author!} : ${comment.content!}</a></li>
             </#if>
