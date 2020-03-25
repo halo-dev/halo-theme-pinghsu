@@ -1,5 +1,4 @@
-<#include "/common/macro/common_macro.ftl">
-<#macro header title,keywords,description>
+<#macro header title>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,14 +16,14 @@
     <meta http-equiv="Cache-Control" content="no-transform"/>
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
 
-    <@globalHeader />
+    <@global.head />
 
     <title>${title!}</title>
-    <meta name="keywords" content="${keywords!}" />
-    <meta name="description" content="${description!}" />
+    <meta name="keywords" content="${meta_keywords!}" />
+    <meta name="description" content="${meta_description!}" />
 
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/xcode.min.css">
-    <link href="${static!}/source/css/style.min.css" rel="stylesheet">
+    <link href="${theme_base!}/source/css/style.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="//cdnjs.loli.net/ajax/libs/html5shiv/r29/html5.min.js"></script>
     <script src="//cdnjs.loli.net/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -38,11 +37,11 @@
 <![endif]-->
 <header id="header" class="header bg-white">
     <div class="navbar-container">
-        <a href="${context!}" class="navbar-logo">
-            <#if options.blog_logo??>
-            <img src="${options.blog_logo!}" title="${options.blog_title!}" />
+        <a href="${blog_url!}" class="navbar-logo">
+            <#if blog_logo?? && blog_logo!=''>
+            <img src="${blog_logo!}" title="${blog_title!}" />
             <#else>
-            ${options.blog_title!}
+            ${blog_title!}
             </#if>
         </a>
         <div class="navbar-menu">
@@ -62,7 +61,7 @@
         <#else>
         <div class="navbar-search" onclick="">
             <span class="icon-search"></span>
-            <form id="search" method="get" action="${context!}/search" role="search">
+            <form id="search" method="get" action="${blog_url!}/search" role="search">
                 <span class="search-box">
                     <input type="text" id="input" class="input" name="keyword" required="true" placeholder="Search..." maxlength="30" autocomplete="off">
                 </span>

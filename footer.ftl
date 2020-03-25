@@ -1,4 +1,3 @@
-<#include "/common/macro/common_macro.ftl">
 <#import "functions.ftl" as fun>
 <footer id="footer" class="footer bg-white">
 	<div class="footer-social">
@@ -24,18 +23,18 @@
 		<div class="footer-container">
 			<div class="meta-item meta-copyright">
 				<div class="meta-copyright-info">
-                    <a href="${context!}" class="info-logo">
+                    <a href="${blog_url!}" class="info-logo">
                         <#if settings.footer_logo??>
-                        <img src="${settings.footer_logo}" alt="${options.blog_title!}" />
+                        <img src="${settings.footer_logo}" alt="${blog_title!}" />
                         <#else>
-                        ${options.blog_title!}
+                        ${blog_title!}
                         </#if>
                     </a>
 					<div class="info-text">
                     	<p>Theme is <a href="https://github.com/chakhsu/pinghsu" target="_blank">Pinghsu</a> by <a href="https://www.linpx.com/" target="_blank">Chakhsu</a></p>
 						<p>Powered by <a href="https://halo.run" target="_blank" rel="nofollow">Halo</a></p>
-						<p>&copy; ${.now?string("yyyy")} <a href="${context!}">${options.blog_title!}</a></p>
-                        <p><@footer_info></@footer_info></p>
+						<p>&copy; ${.now?string("yyyy")} <a href="${blog_url!}">${blog_title!}</a></p>
+                        <p><@global.footer /></p>
 					</div>
 				</div>
 			</div>
@@ -156,7 +155,7 @@ postDirectoryBuild();
 
 
 <#if settings.pjax!false>
-<script src="${static!}/source/js/instantclick.min.js?v20140319"></script>
+<script src="${theme_base!}/source/js/instantclick.min.js?v20140319"></script>
 </#if>
 
 <#if settings.fast_click!false>
@@ -241,9 +240,6 @@ MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 </script>
 <script src="//cdnjs.loli.net/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </#if>
-
-<#-- 统计代码 -->
-<@statistics />
 
 <#if settings.pjax!false>
 <script data-no-instant>

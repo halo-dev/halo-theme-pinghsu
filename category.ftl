@@ -1,6 +1,6 @@
 <#include "header.ftl">
 <#import "functions.ftl" as fun>
-<@header title="分类：${category.name!} | ${options.blog_title!}" keywords="${options.seo_keywords!}" description="${options.seo_description!}"></@header>
+<@header title="分类：${category.name!} | ${blog_title!}"></@header>
 <div class="main-content common-page clearfix">
     <div class="common-item">
         <div class="common-title">
@@ -13,9 +13,9 @@
 						<div class="post-list-item">
 							<div class="post-list-item-container <#if settings.post_color!false>bg-<@fun.randBgColor/></#if>">
 								<div class="item-label <#if settings.post_color!false>bg-<@fun.randBgColor/></#if>">
-                                    <div class="item-title"><a href="${context!}/archives/${post.url!}">${post.title!}</a></div>
+                                    <div class="item-title"><a href="${post.fullPath!}">${post.title!}</a></div>
 									<div class="item-meta clearfix">
-										<div class="item-meta-ico bg-ico-<@fun.randBgIco/>" style="background: url(${static!}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
+										<div class="item-meta-ico bg-ico-<@fun.randBgIco/>" style="background: url(${theme_base!}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;"></div>
 										<div class="item-meta-date"> ${post.createTime?string('MMM d,yyyy')} </div>
 									</div>
 								</div>
@@ -28,38 +28,34 @@
 			</div>
 		</div>
 	</div>
-	<div class="lists-navigator clearfix">
+    <div class="lists-navigator clearfix">
         <#if posts.totalPages gt 1>
             <ol class="page-navigator">
-                <#if posts.hasPrevious()>
-					<#if posts.number == 1>
-                        <li class="prev">
-                            <a href="${context!}/categories/${category.slugName!}">←</a>
+                <@paginationTag method="categoryPosts" page="${posts.number}" total="${posts.totalPages}" display="3" slug="${category.slug!}">
+                    <#if pagination.hasPrev>
+                        <li class="pre">
+                            <a href="${pagination.prevPageFullPath!}">←</a>
                         </li>
-					<#else>
-                        <li class="prev">
-                            <a href="${context!}/categories/${category.slugName!}/page/${posts.number}">←</a>
+                    </#if>
+                    <#list pagination.rainbowPages as number>
+                        <#if number.isCurrent>
+                            <li class="current">
+                                <a href="${number.fullPath!}">${number.page!}</a>
+                            </li>
+                        <#else>
+                            <li>
+                                <a href="${number.fullPath!}">${number.page!}</a>
+                            </li>
+                        </#if>
+                    </#list>
+                    <#if pagination.hasNext>
+                        <li class="next">
+                            <a href="${pagination.nextPageFullPath!}">→</a>
                         </li>
-					</#if>
-				</#if>
-                <#list rainbow as r>
-					<#if r == posts.number+1>
-                        <li class="current">
-                            <a href="${context!}/categories/${category.slugName!}/page/${r}">${r}</a>
-                        </li>
-					<#else>
-                        <li>
-                            <a href="${context!}/categories/${category.slugName!}/page/${r}">${r}</a>
-                        </li>
-					</#if>
-				</#list>
-                <#if posts.hasNext()>
-                    <li class="next">
-                        <a href="${context!}/categories/${category.slugName!}/page/${posts.number+2}">→</a>
-                    </li>
-				</#if>
+                    </#if>
+                </@paginationTag>
             </ol>
-		</#if>
+        </#if>
     </div>
 </div>
 
