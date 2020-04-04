@@ -25,8 +25,8 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/xcode.min.css">
     <link href="${theme_base!}/source/css/style.min.css" rel="stylesheet">
     <!--[if lt IE 9]>
-    <script src="//cdnjs.loli.net/ajax/libs/html5shiv/r29/html5.min.js"></script>
-    <script src="//cdnjs.loli.net/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
     <![endif]-->
 </head>
 <body class="<#if is_index??>bg-grey</#if>" gtools_scp_screen_capture_injected="true">

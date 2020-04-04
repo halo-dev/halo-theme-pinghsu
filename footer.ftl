@@ -146,20 +146,19 @@ postDirectoryBuild();
 </script>
 </#if>
 
-<#--<?php $this->footer(); ?>-->
-<script src="//cdnjs.loli.net/ajax/libs/headroom/0.9.1/headroom.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/headroom.js@0.9.1/dist/headroom.min.js"></script>
 
 <#if settings.post_highlight!true>
-<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
 </#if>
 
 
 <#if settings.pjax!false>
-<script src="${theme_base!}/source/js/instantclick.min.js?v20140319"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantclick@3.1.0/instantclick.min.js"></script>
 </#if>
 
 <#if settings.fast_click!false>
-<script src="//cdnjs.loli.net/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js"></script>
 </#if>
 
 <script>
