@@ -154,7 +154,7 @@ postDirectoryBuild();
 
 
 <#if settings.pjax!false>
-<script src="https://cdn.jsdelivr.net/npm/instantclick@3.1.0/instantclick.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantclick@3.1.0-2/dist/instantclick.min.js"></script>
 </#if>
 
 <#if settings.fast_click!false>
