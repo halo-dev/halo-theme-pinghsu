@@ -1,0 +1,110 @@
+apiVersion: v1alpha1
+kind: Setting
+metadata:
+  name: theme-pinghsu-setting
+spec:
+  forms:
+    - group: general
+      label: 基本设置
+      formSchema:
+        - $formkit: text
+          name: footer_logo
+          label: 页尾 logo
+        - $formkit: text
+          name: search_page
+          label: 搜索页地址
+        - $formkit: radio
+          name: pjax
+          label: PJAX 加速设置
+          value: true
+          options:
+            - value: true
+              label: 开启
+            - value: false
+              label: 关闭
+        - $formkit: radio
+          name: dns
+          label: DNS 预解析加速
+          value: true
+          options:
+            - value: true
+              label: 开启
+            - value: false
+              label: 关闭
+        - $formkit: radio
+          name: fast_click
+          label: 移动端点击延迟消除插件
+          value: true
+          options:
+            - value: true
+              label: 开启
+            - value: false
+              label: 关闭
+    - group: style
+      label: 样式设置
+      formSchema:
+        - $formkit: radio
+          name: post_list
+          label: 首页文章列表
+          value: three
+          options:
+            - value: three
+              label: 三栏
+            - value: one
+              label: 单栏
+        - $formkit: attachment
+          accepts:
+            - "image/*"
+          name: cover_image
+          label: 默认文章封面
+        - $formkit: radio
+          name: post_color
+          label: 文章色块设置
+          value: false
+          options:
+            - value: true
+              label: 开启
+            - value: false
+              label: 关闭
+        - $formkit: radio
+          name: post_picture
+          label: 文章题图设置
+          value: false
+          options:
+            - value: true
+              label: 开启
+            - value: false
+              label: 关闭
+        - $formkit: radio
+          name: post_toc
+          label: 文章目录设置
+          value: true
+          options:
+            - value: true
+              label: 开启
+            - value: false
+              label: 关闭
+        - $formkit: radio
+          name: post_highlight
+          label: 代码高亮设置
+          value: true
+          options:
+            - value: true
+              label: 开启
+            - value: false
+              label: 关闭
+    - group: sns
+      label: 社交资料设置
+      formSchema:
+        - $formkit: repeater
+          name: social
+          label: 社交媒体
+          children:
+            - $formkit: text
+              name: url
+              label: 链接地址
+              value: ""
+            - $formkit: text
+              name: name
+              label: 名称
+              value: ""
