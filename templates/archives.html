@@ -1,26 +1,34 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
->
-  <th:block th:fragment="content">
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: html(title = |归档 - ${site.title}|,content = ~{::content})}">
+<th:block th:fragment="content">
+  <div class="main-content archive-page clearfix" th:with="archives = ${postFinder.archives(1, 999999)}">
     <th:block th:each="archive : ${archives.items}">
-      <h1 th:text="${archive.year}"></h1>
-      <ul class="listing">
-        <th:block th:each="month : ${archive.months}">
-          <li th:each="post : ${month.posts}">
-            <a
-              th:href="@{${post.status.permalink}}"
-              th:title="${post.spec.title}"
-              th:text="${post.spec.title}"
-            ></a>
-          </li>
-        </th:block>
-      </ul>
+      <div class="categorys-item">
+        <div class="categorys-title" th:text="${archive.year}"></div>
+        <div class="post-lists">
+          <th:block th:each="month : ${archive.months}">
+            <div class="post-lists-body">
+              <div class="post-list-item" th:each="post : ${month.posts}">
+                <div class="post-list-item-container">
+                  <div class="item-label">
+                    <div class="item-title"><a th:href="${post.status.permalink}" th:text="${post.spec.title}"></a>
+                    </div>
+                    <div class="item-meta clearfix">
+                      <div class="item-meta-date">
+                        <th:block th:text="${#dates.format( post.spec.publishTime, 'yyyy年MM月dd日')}">
+                        </th:block>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </th:block>
+        </div>
+      </div>
     </th:block>
-    <a th:if="${archives.hasPrevious()}" th:href="@{${archives.prevUrl}}">
-      上一页
-    </a>
-    <a th:if="${archives.hasNext()}" th:href="@{${archives.nextUrl}}">下一页</a>
-  </th:block>
+  </div>
+</th:block>
+
 </html>

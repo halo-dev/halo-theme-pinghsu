@@ -66,7 +66,7 @@
                 </div>
                 <div class="item-meta">
                   <time th:datetime="${post.metadata.creationTimestamp}" itemprop="datePublished">
-                    发布于 <th:block th:text="${#dates.format( post.metadata.creationTimestamp, 'yyyy年mm月dd日')}">
+                    发布于 <th:block th:text="${#dates.format( post.metadata.creationTimestamp, 'yyyy年MM月dd日')}">
                     </th:block>
                   </time>in
                   <th:block th:if="${ not #lists.isEmpty(post.categories)}">
