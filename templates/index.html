@@ -91,32 +91,7 @@
       </div>
     </div>
   </div>
-  <div class="lists-navigator clearfix">
-    <ol class="page-navigator" th:attr="x-data=|pagination(${posts.page},${posts.totalPages},6)|">
-      <th:block th:if="${posts.hasPrevious}">
-        <li class="pre">
-          <a th:href="${posts.prevUrl}">←</a>
-        </li>
-      </th:block>
-      <template x-for="item in items">
-        <li>
-          <template x-if="item === '...'">
-            <span x-text="item">
-            </span>
-          </template>
-          <template x-if="item !== '...'">
-            <a x-text="item" :style="page===item && {color:'red'}" th:attr="'x-bind:href'=|'${site.url}page/'+item|">
-            </a>
-          </template>
-        </li>
-      </template>
-      <th:block th:if="${posts.hasNext}">
-        <li class="next">
-          <a th:href="${posts.nextUrl}">→</a>
-        </li>
-      </th:block>
-    </ol>
-  </div>
+  <th:block th:replace="~{modules/widgets/navigator :: navigator('/')}"></th:block>
   </div>
 
 </th:block>

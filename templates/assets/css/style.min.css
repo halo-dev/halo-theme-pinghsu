@@ -1369,7 +1369,7 @@ textarea:-ms-input-placeholder {
     position: absolute;
     top: 0;
     left: -15px;
-    padding: 0 30px;
+    padding: 0 0 0 30px;
     content: '#';
     color: #eb5055
 }
