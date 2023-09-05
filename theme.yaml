@@ -1,0 +1,17 @@
+apiVersion: theme.halo.run/v1alpha1
+kind: Theme
+metadata:
+  name: halo-theme-pinghsu-next
+spec:
+  displayName: Theme Pinghsu@next
+  author:
+    name: Hilary Liu
+    website: "https://halo.run"
+  description: Halo 2.0 Theme for pinghsu
+  logo: "https://halo.run/logo"
+  website: "https://halo.run"
+  repo: "https://github.com/halo-sigs/theme-starter"
+  settingName: "theme-pinghsu-setting"
+  configMapName: "theme-pinghsu-configMap"
+  version: "1.0"
+  require: ">2.0"

@@ -1,0 +1,41 @@
+<header id="header" class="header bg-white">
+    <div class="navbar-container">
+        <a th:href="${site.url}" class="navbar-logo">
+            <img th:if="${not #strings.isEmpty(site.logo)}" th:src="${site.logo}" th:title="${site.title}" />
+            <th:block th:if="${#strings.isEmpty(site.logo)}">
+                <span th:text="${site.title}">
+                </span>
+            </th:block>
+        </a>
+        <div class="navbar-menu">
+            <th:block th:with="menu = ${menuFinder.getPrimary()}">
+                <th:block th:with="menuItems = ${menu.menuItems}">
+                    <th:block th:each="menuItem : ${menuItems}">
+                        <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.status.displayName}"
+                            th:target="${menuItem.spec.target?.value}">
+                        </a>
+                    </th:block>
+                </th:block>
+            </th:block>
+        </div>
+        <th:block th:if="${pluginFinder.available('PluginSearchWidget')}">
+            <a href="javascript:SearchWidget.open()" title="搜索" class="navbar-search">
+                <span class="icon-search"></span>
+            </a>
+        </th:block>
+
+
+        <div class="navbar-mobile-menu">
+            <span class="icon-menu cross"><span class="middle"></span></span>
+            <th:block th:with="menu = ${menuFinder.getPrimary()}">
+                <ul th:with="menuItems = ${menu.menuItems}">
+                    <li th:each="menuItem : ${menuItems}">
+                        <a th:href="@{${menuItem.status.href}}" th:text="${menuItem.spec.displayName}"
+                            th:target="${menuItem.spec.target?.value}">
+                        </a>
+                    </li>
+                </ul>
+            </th:block>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,53 @@
+<footer id="footer" class="footer bg-white">
+    <div class="footer-social">
+        <div class="footer-container clearfix">
+            <div class="social-list">
+                <th:block th:each="item : ${theme.config.sns.social}">
+                    <a class="social" target="blank" th:href="${item.url}" th:text="${item.name}">WEIBO</a>
+                </th:block>
+            </div>
+        </div>
+    </div>
+    <div class="footer-meta">
+        <div class="footer-container">
+            <div class="meta-item meta-copyright">
+                <div class="meta-copyright-info">
+                    <a th:href="${site.url}" class="info-logo">
+                        <img th:if="${not #strings.isEmpty(theme.config.footer.logo)}" th:src="${site.logo}"
+                            th:alt="${site.title}" />
+                        <th:block th:if="${ #strings.isEmpty(theme.config.footer.logo)}">
+                            <span th:text="${site.title}">
+                            </span>
+                        </th:block>
+                    </a>
+                    <div class="info-text">
+                        <!-- remove href to now github url -->
+                        <p>Theme is <a href="https://github.com/chakhsu/pinghsu" target="_blank">Pinghsu</a> by <a
+                                href="https://www.linpx.com/" target="_blank">Chakhsu</a></p>
+                        <p>Powered by <a href="https://halo.run" target="_blank" rel="nofollow">Halo</a></p>
+                        <p>&copy; <th:block th:text="${#dates.format(new java.util.Date().getTime(), 'yyyy')}">
+                            </th:block> <a th:href="${site.url}" th:text="${site.title}"></a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="meta-item meta-posts">
+                <h3 class="meta-title">RECENT POSTS</h3>
+                <th:block th:with="posts = ${postFinder.list(1,8)}">
+                    <li th:each="post : ${posts.items}">
+                        <a th:href="@{${post.status.permalink}}" th:text="${post.spec.title}"></a>
+                    </li>
+                </th:block>
+                <li></li>
+            </div>
+            <div class="meta-item meta-tags">
+                <h3 class="meta-title">RECENT TAGS</h3>
+                <ul th:with="tags = ${tagFinder.list(1,8)}">
+                    <li th:each="tag : ${tags.items}">
+
+                        <a th:href="@{${tag.status.permalink}}" th:text="|# ${tag.spec.displayName}|"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

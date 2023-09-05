@@ -1,0 +1,124 @@
+<!-- Pinghsu是一款以前端性能优化为出发点而制作的Typecho主题，同时又兼顾设计美学和视觉传达。主题命名取自作者姓名和其女朋友姓名的最后一个字的港式英文，挣扎于Hsuping还是Pinghsu，最后取为Pinghsu，意为一切都是Ping先Hsu后，即系要听女朋友的话。
+    * 
+    * @package Pinghsu Theme 
+    * @author Chakhsu Lau 
+    * @migrationBy Hilary Liu
+    * @version 1.5.4 
+    * @link https://www.linpx.com/  
+-->
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: html(title = ${site.title}, content = ~{::content})}">
+<th:block th:fragment="content">
+  <div class="main-content index-page clearfix <#if (settings.post_list!'one') == 'one'>onelist-page</#if>">
+    <div class="post-lists">
+      <div class="post-lists-body">
+        <th:block th:if="${theme.config.style.post_list == 'three'}">
+          <div th:each="post : ${posts.items}" class="post-list-item">
+            <div class="post-list-item-container">
+              <div th:if="not ${#strings.isEmpty(post.spec.cover)}" class="item-thumb"
+                th:style="|background-image:url(${post.spec.cover});|"></div>
+              <div th:if="${#strings.isEmpty(post.spec.cover)}" class="item-thumb"
+                th:style="|background-image:url(${theme.config.style.cover_image});|">
+              </div>
+              <a href="${post.fullPath!}">
+                <div class="item-desc">
+                  <p th:text="${post.status.excerpt}"></p>
+                </div>
+              </a>
+              <!-- add setting color -->
+              <div
+                class="item-slant reverse-slant <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor /></#if>">
+              </div>
+              <div class="item-slant"></div>
+              <div class="item-label">
+                <div class="item-title">
+                  <a th:href="${post.status.permalink}" th:text="${post.spec.title}"></a>
+                </div>
+                <div class="item-meta clearfix">
+                  <div class="item-meta-ico bg-ico-<@fun.showBgIco post.id />"
+                    style="background: url(${theme_base!}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;">
+                  </div>
+                  <div class="item-meta-cat">
+                    <th:block th:if="${ not #lists.isEmpty(post.categories)}">
+                      <a th:href="${post.categories[0].status.permalink}"
+                        th:text="${post.categories[0].spec.displayName}"></a>
+                    </th:block>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </th:block>
+        <th:block th:if="${theme.config.style.post_list == 'one'}">
+          <div class="post-onelist-item" th:each="post : ${posts.items}">
+            <div class="post-onelist-item-container">
+              <a th:href="${post.status.permalink}">
+                <div th:if="not ${#strings.isEmpty(post.spec.cover)}" class="onelist-item-thumb"
+                  th:style="|background-image:url(${post.spec.cover});|"></div>
+                <div class="onelist-item-thumb" th:if="${#strings.isEmpty(post.spec.cover)}"
+                  th:style="|background-image:url(${theme.config.style.cover_image});|">
+                </div>
+              </a>
+              <div class="onelist-item-info">
+                <div class="item-title">
+                  <a th:href="${post.status.permalink}" th:text="${post.spec.title}"></a>
+                </div>
+                <div class="item-meta">
+                  <time th:datetime="${post.metadata.creationTimestamp}" itemprop="datePublished">
+                    发布于 <th:block th:text="${#dates.format( post.metadata.creationTimestamp, 'yyyy年mm月dd日')}">
+                    </th:block>
+                  </time>in
+                  <th:block th:if="${ not #lists.isEmpty(post.categories)}">
+                    <a th:href="${post.categories[0].status.permalink}"
+                      th:text="${post.categories[0].spec.displayName}"></a>
+                  </th:block>
+                  </a>
+                </div>
+                <div
+                  class="item-meta-hr <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>">
+                </div>
+                <div class="item-content">
+                  <p th:text="${post.status.excerpt}"></p>
+                </div>
+                <div class="item-readmore">
+                  <a th:href="${post.status.permalink}"> 继续阅读 → </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </th:block>
+      </div>
+    </div>
+  </div>
+  <div class="lists-navigator clearfix">
+    <ol class="page-navigator" th:attr="x-data=|pagination(${posts.page},${posts.totalPages},6)|">
+      <th:block th:if="${posts.hasPrevious}">
+        <li class="pre">
+          <a th:href="${posts.prevUrl}">←</a>
+        </li>
+      </th:block>
+      <template x-for="item in items">
+        <li>
+          <template x-if="item === '...'">
+            <span x-text="item">
+            </span>
+          </template>
+          <template x-if="item !== '...'">
+            <a x-text="item" :style="page===item && {color:'red'}" th:attr="'x-bind:href'=|'${site.url}page/'+item|">
+            </a>
+          </template>
+        </li>
+      </template>
+      <th:block th:if="${posts.hasNext}">
+        <li class="next">
+          <a th:href="${posts.nextUrl}">→</a>
+        </li>
+      </th:block>
+    </ol>
+  </div>
+  </div>
+
+</th:block>
+
+</html>
