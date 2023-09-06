@@ -21,7 +21,7 @@
               <div th:if="${#strings.isEmpty(post.spec.cover)}" class="item-thumb"
                 th:style="|background-image:url(${theme.config.style.cover_image});|">
               </div>
-              <a href="${post.fullPath!}">
+              <a th:href="${post.status.permalink}">
                 <div class="item-desc">
                   <p th:text="${post.status.excerpt}"></p>
                 </div>

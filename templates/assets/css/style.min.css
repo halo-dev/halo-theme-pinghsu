@@ -766,6 +766,7 @@ textarea:-ms-input-placeholder {
 }
 
 .main-content {
+    padding: 130px 25px 30px;
     position: relative;
     max-width: 940px;
     margin: 0 auto;
