@@ -1,17 +1,36 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
->
-  <th:block th:fragment="content">
-    <h1>标签</h1>
-    <ul>
-      <li th:each="tag : ${tags}">
-        <a
-          th:href="@{${tag.status.permalink}}"
-          th:text="${tag.spec.displayName}"
-        ></a>
-      </li>
-    </ul>
-  </th:block>
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: html(title = | 标签归档 |,content = ~{::content})}">
+<th:block th:fragment="content">
+  <div class="main-content page-page" th:attr="x-data=|{post_color: ${theme.config.style.post_color}}|">
+    <div class="search-page" x-data="random">
+      <th:block th:if="${pluginFinder.available('PluginSearchWidget')}">
+        <a id="search" class="search-form" href="javascript:SearchWidget.open()">
+          <span class="search-box clearfix">
+            <div type="text" id="input" class="input">
+              search...
+            </div>
+            <button type="submit" class="spsubmit"><i class="icon-search"></i></button>
+          </span>
+        </a>
+      </th:block>
+      <div class="search-tags">
+        <th:block th:if="${not #lists.isEmpty(tags)}">
+          <p>👇 The following tabs can help you!</p>
+          <th:block th:each="tag : ${tags}">
+            <a th:href="${tag.status.permalink}" th:text="|# ${tag.spec.displayName} (${tag.status.visiblePostCount})|"
+              :class="`${post_color ? `bg-${randomColor()} text-white`:'bg-white'}`">
+            </a>
+          </th:block>
+        </th:block>
+        <th:block th:if="${ #lists.isEmpty(tags)}">
+          <p> Nothing here ! </p>
+        </th:block>
+        <div class="search-tags-hr" :class="`${post_color ? `bg-${randomColor()}`:'bg-deepgrey'}`">
+        </div>
+      </div>
+    </div>
+  </div>
+</th:block>
+
 </html>

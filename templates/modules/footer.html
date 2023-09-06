@@ -20,11 +20,13 @@
         <div class="meta-copyright-info">
           <a th:href="${site.url}" class="info-logo">
             <img
-              th:if="${not #strings.isEmpty(theme.config.footer.logo)}"
-              th:src="${site.logo}"
+              th:if="${not #strings.isEmpty(theme.config.general.footer_logo)}"
+              th:src="${theme.config.general.footer_logo}"
               th:alt="${site.title}"
             />
-            <th:block th:if="${ #strings.isEmpty(theme.config.footer.logo)}">
+            <th:block
+              th:if="${ #strings.isEmpty(theme.config.general.footer_logo)}"
+            >
               <span th:text="${site.title}"> </span>
             </th:block>
           </a>
@@ -33,15 +35,30 @@
             <p>
               Theme is
               <a
-                href="https://github.com/halo-dev/halo-theme-pinghsu/tree/next"
+                th:href="${theme.spec.repo}"
+                th:text="${theme.spec.displayName}"
                 target="_blank"
-                >Pinghsu</a
+                style="text-decoration: underline; font-weight: 700"
+              ></a>
+              <br />
+              by
+              <a
+                th:href="${theme.spec.author.website}"
+                th:text="${theme.spec.author.name}"
+                target="_blank"
+                style="text-decoration: underline; font-weight: 700"
               >
-              by <a href="https://www.linpx.com/" target="_blank">Chakhsu</a>
+              </a>
             </p>
             <p>
               Powered by
-              <a href="https://halo.run" target="_blank" rel="nofollow">Halo</a>
+              <a
+                href="https://halo.run"
+                style="text-decoration: underline; font-weight: 700"
+                target="_blank"
+                rel="nofollow"
+                >Halo</a
+              >
             </p>
             <p>
               &copy;
@@ -49,7 +66,11 @@
                 th:text="${#dates.format(new java.util.Date().getTime(), 'yyyy')}"
               >
               </th:block>
-              <a th:href="${site.url}" th:text="${site.title}"></a>
+              <a
+                th:href="${site.url}"
+                style="text-decoration: underline; font-weight: 700"
+                th:text="${site.title}"
+              ></a>
             </p>
           </div>
         </div>
@@ -79,4 +100,21 @@
       </div>
     </div>
   </div>
+  <th:block th:if="${theme.config.general.fast_click}">
+    <script
+      src="https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js"
+    ></script>
+  </th:block>
+
+  <script>
+    if ("addEventListener" in document) {
+      document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+          FastClick.attach(document.body);
+        },
+        false
+      );
+    }
+  </script>
 </footer>

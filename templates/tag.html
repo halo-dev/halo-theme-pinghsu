@@ -1,19 +1,39 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
->
-  <th:block th:fragment="content">
-    <h1 th:text="${tag.spec.displayName}"></h1>
-    <ul>
-      <li th:each="post : ${posts.items}">
-        <a
-          th:href="@{${post.status.permalink}}"
-          th:text="${post.spec.title}"
-        ></a>
-      </li>
-    </ul>
-    <a th:if="${posts.hasPrevious()}" th:href="@{${posts.prevUrl}}">上一页</a>
-    <a th:if="${posts.hasNext()}" th:href="@{${posts.nextUrl}}">下一页</a>
-  </th:block>
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: html(title = | 标签 - ${tag.spec.displayName}|,content = ~{::content})}">
+<th:block th:fragment="content">
+  <div class="main-content common-page clearfix" th:attr="x-data=|{post_color: ${theme.config.style.post_color}}|">
+    <div class="common-item" x-data="random">
+      <div class="common-title" th:text="${tag.spec.displayName}">
+      </div>
+      <div class="post-lists">
+        <div class="post-lists-body">
+          <th:block th:if="${not #lists.isEmpty(posts.items)}">
+            <div class="post-list-item" th:each="post : ${posts}">
+              <div class="post-list-item-container" :class="`${post_color ? `bg-${randomColor()}`:''}`">
+                <div class="item-label" :class="`${post_color ? `bg-${randomColor()}`:''}`">
+                  <div class="item-title"><a th:href="${post.status.permalink}" th:text="${post.spec.title}"></a></div>
+                  <div class="item-meta clearfix">
+                    <div class="item-meta-ico" :class="`bg-ico-${randomIcon()}`"
+                      th:style="|background: url(@{/assets/images/bg-ico.png}) no-repeat;background-size: 40px auto;|">
+                    </div>
+                    <div class="item-meta-date">
+                      <th:block th:text="${#dates.format( post.metadata.creationTimestamp, 'yyyy年MM月dd日')}">
+                      </th:block>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </th:block>
+          <th:block th:if="${#lists.isEmpty(posts.items)}">
+            <div class="post-list-item">没有找到内容,请换别的关键字进行检索</div>
+          </th:block>
+        </div>
+      </div>
+    </div>
+    <th:block th:replace="~{modules/widgets/navigator :: navigator(${tag.status.permalink}+'/')}"></th:block>
+  </div>
+</th:block>
+
 </html>

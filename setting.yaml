@@ -10,18 +10,6 @@ spec:
         - $formkit: text
           name: footer_logo
           label: 页尾 logo
-        - $formkit: text
-          name: search_page
-          label: 搜索页地址
-        - $formkit: radio
-          name: pjax
-          label: PJAX 加速设置
-          value: true
-          options:
-            - value: true
-              label: 开启
-            - value: false
-              label: 关闭
         - $formkit: radio
           name: dns
           label: DNS 预解析加速
@@ -52,11 +40,6 @@ spec:
               label: 三栏
             - value: one
               label: 单栏
-        - $formkit: attachment
-          accepts:
-            - "image/*"
-          name: cover_image
-          label: 默认文章封面
         - $formkit: radio
           name: post_color
           label: 文章色块设置

@@ -1,90 +1,105 @@
 <!DOCTYPE html>
 <html lang="en" th:fragment="html (title, content)">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=2"
-    />
-    <title th:text="${title}"></title>
-    <link rel="stylesheet" th:href="@{/assets/css/style.min.css}" />
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
-  </head>
 
-  <body>
-    <script>
-      document.addEventListener("alpine:init", () => {
-        Alpine.data("pagination", (page, totalPages, totalVisible) => ({
-          page: page,
-          totalPages: totalPages,
-          totalVisible: totalVisible,
-          items() {
-            if (totalVisible === 0 || this.totalPages === 0) {
-              return [];
-            }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
+  <title th:text="${title}"></title>
+  <link rel="stylesheet" th:href="@{/assets/css/style.min.css}" />
+  <th:block th:if="${theme.config.general.dns}">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="dns-prefetch" href="//cdnjs.loli.net" />
+    <link rel="dns-prefetch" href="//gravatar.loli.net" />
+  </th:block>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <th:block th:if="${theme.config.style.post_toc}">
+    <script src="https://cdn.jsdelivr.net/npm/headroom.js@0.9.1/dist/headroom.min.js"></script>
+  </th:block>
+  <th:block th:if="${theme.config.style.post_highlight}">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+  </th:block>
+</head>
 
-            const maxLength = Math.min(
-              Math.max(0, this.totalVisible) || this.totalPages,
-              this.totalPages
-            );
+<body>
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data("pagination", (page, totalPages, totalVisible) => ({
+        page: page,
+        totalPages: totalPages,
+        totalVisible: totalVisible,
+        items() {
+          if (totalVisible === 0 || this.totalPages === 0) {
+            return [];
+          }
 
-            if (this.totalPages <= maxLength) {
-              return this.range(1, this.totalPages);
-            }
+          const maxLength = Math.min(Math.max(0, this.totalVisible) || this.totalPages, this.totalPages);
 
-            const even = maxLength % 2 === 0 ? 1 : 0;
-            const left = Math.floor(maxLength / 2);
-            const right = this.totalPages - left + 1 + even;
+          if (this.totalPages <= maxLength) {
+            return this.range(1, this.totalPages);
+          }
 
-            if (this.page > left && this.page < right) {
-              const firstItem = 1;
-              const lastItem = this.totalPages;
-              const start = this.page - left + 2;
-              const end = this.page + left - 2 - even;
-              const secondItem = start - 1 === firstItem + 1 ? 2 : "...";
-              const beforeLastItem = end + 1 === lastItem - 1 ? end + 1 : "...";
+          const even = maxLength % 2 === 0 ? 1 : 0;
+          const left = Math.floor(maxLength / 2);
+          const right = this.totalPages - left + 1 + even;
 
-              return [
-                1,
-                secondItem,
-                ...this.range(start, end),
-                beforeLastItem,
-                this.totalPages,
-              ];
-            } else if (this.page === left) {
-              const end = this.page + left - 1 - even;
-              return [...this.range(1, end), "...", this.totalPages];
-            } else if (this.page === right) {
-              const start = this.page - left + 1;
-              return [1, "...", ...this.range(start, this.totalPages)];
-            } else {
-              return [
-                ...this.range(1, left),
-                "...",
-                ...this.range(right, this.totalPages),
-              ];
-            }
-          },
-          range(from, to) {
-            const range = [];
+          if (this.page > left && this.page < right) {
+            const firstItem = 1;
+            const lastItem = this.totalPages;
+            const start = this.page - left + 2;
+            const end = this.page + left - 2 - even;
+            const secondItem = start - 1 === firstItem + 1 ? 2 : "...";
+            const beforeLastItem = end + 1 === lastItem - 1 ? end + 1 : "...";
 
-            from = from > 0 ? from : 1;
+            return [1, secondItem, ...this.range(start, end), beforeLastItem, this.totalPages];
+          } else if (this.page === left) {
+            const end = this.page + left - 1 - even;
+            return [...this.range(1, end), "...", this.totalPages];
+          } else if (this.page === right) {
+            const start = this.page - left + 1;
+            return [1, "...", ...this.range(start, this.totalPages)];
+          } else {
+            return [...this.range(1, left), "...", ...this.range(right, this.totalPages)];
+          }
+        },
+        range(from, to) {
+          const range = [];
 
-            for (let i = from; i <= to; i++) {
-              range.push(i);
-            }
+          from = from > 0 ? from : 1;
 
-            return range;
-          },
-        }));
-      });
-    </script>
-    <th:block th:replace="~{modules/header}" />
-    <th:block th:replace="${content}" />
-    <th:block th:replace="~{modules/footer}" />
-  </body>
+          for (let i = from; i <= to; i++) {
+            range.push(i);
+          }
+
+          return range;
+        },
+      }))
+      Alpine.data("random", () => ({
+        randomIcon() {
+          const bgColor = ['book', 'game', 'note', 'chat', 'code', 'image', 'web', 'link', 'design', 'lock'];
+          return bgColor[Math.floor(Math.random() * bgColor.length)];
+        },
+        randomPostIcon(id) {
+          const bgColor = ['book', 'game', 'note', 'chat', 'code', 'image', 'web', 'link', 'design', 'lock'];
+          return
+        },
+        randomColor() {
+          const bgColor = ['blue', 'purple', 'green', 'yellow', 'red', 'orange']
+          console.log(
+            bgColor[Math.floor(Math.random() * bgColor.length)], 1
+          );
+          return bgColor[Math.floor(Math.random() * bgColor.length)];
+        },
+        randomImg() {
+          console.log(1);
+          return Math.floor(Math.random() * 10) + '.jpg'
+        }
+      }))
+    })
+  </script>
+  <th:block th:replace="~{modules/header}" />
+  <th:block th:replace="${content}" />
+  <th:block th:replace="~{modules/footer}" />
+</body>
+
 </html>
