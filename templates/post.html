@@ -98,7 +98,7 @@
           </p>
           <th:block th:utext="${post.content.content}"></th:block>
           <p class="post-info">
-            本文由 <a href="${site.url}"><b>
+            本文由 <a th:href="${site.url}"><b>
                 <th:block th:text="${site.title}"></th:block>
               </b></a> 提供，采用 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"
               rel="external nofollow">知识共享署名4.0</a>
