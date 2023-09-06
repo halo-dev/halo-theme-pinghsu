@@ -23,8 +23,8 @@
             <!-- remove href to now github url -->
             <p>
               Theme is
-              <a href="https://github.com/halo-dev/halo-theme-pinghsu/tree/next" target="_blank">Pinghsu</a>
-              by <a href="https://www.linpx.com/" target="_blank">Chakhsu</a>
+              <a th:href="${theme.spec.repo}" th:text="${theme.spec.displayName}" target="_blank"></a>
+              by <a th:href="${theme.spec.author.website}" th:text="${theme.spec.author.name}" target="_blank"></a>
             </p>
             <p>
               Powered by
