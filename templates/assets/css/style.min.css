@@ -1566,6 +1566,7 @@ textarea:-ms-input-placeholder {
     display: block;
     width: 55px;
     height: 2px;
+    background-color: black;
     margin: 20px auto 10px
 }
 
