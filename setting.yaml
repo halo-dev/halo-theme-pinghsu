@@ -10,9 +10,6 @@ spec:
         - $formkit: text
           name: footer_logo
           label: 页尾 logo
-        - $formkit: text
-          name: search_page
-          label: 搜索页地址
         - $formkit: radio
           name: pjax
           label: PJAX 加速设置

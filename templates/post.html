@@ -100,6 +100,8 @@
         <th:block th:text="${#dates.format(post.status.lastModifyTime, 'YYYY年MM月dd日')}" />
       </p>
     </div>
+    <div style="padding: 20px 0; border-top: 1px solid #e0e0e0;">评论:</div>
+    <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}" colorScheme="'light'" />
   </article>
   <div id="post-bottom-bar" class="post-bottom-bar">
     <div class="bottom-bar-inner">
