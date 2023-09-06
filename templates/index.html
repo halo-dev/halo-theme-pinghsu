@@ -10,25 +10,23 @@
 <html xmlns:th="https://www.thymeleaf.org"
   th:replace="~{modules/layout :: html(title = ${site.title}, content = ~{::content})}">
 <th:block th:fragment="content">
-  <div class="main-content index-page clearfix <#if (settings.post_list!'one') == 'one'>onelist-page</#if>">
-    <div class="post-lists">
-      <div class="post-lists-body">
+  <div class="main-content index-page clearfix">
+    <div class=" post-lists" x-data="random">
+      <div class="post-lists-body" th:attr="x-data=|{post_color: ${theme.config.style.post_color}}|">
         <th:block th:if="${theme.config.style.post_list == 'three'}">
           <div th:each="post : ${posts.items}" class="post-list-item">
             <div class="post-list-item-container">
               <div th:if="not ${#strings.isEmpty(post.spec.cover)}" class="item-thumb"
                 th:style="|background-image:url(${post.spec.cover});|"></div>
               <div th:if="${#strings.isEmpty(post.spec.cover)}" class="item-thumb"
-                th:style="|background-image:url(${theme.config.style.cover_image});|">
+                :class="`${post_color ? `bg-${randomColor()}`:'bg-deepgrey'}`">
               </div>
               <a th:href="${post.status.permalink}">
                 <div class="item-desc">
                   <p th:text="${post.status.excerpt}"></p>
                 </div>
               </a>
-              <!-- add setting color -->
-              <div
-                class="item-slant reverse-slant <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor /></#if>">
+              <div class="item-slant reverse-slant" :class="`${post_color? `bg-${randomColor()}`:'bg-deepgrey'}`">
               </div>
               <div class="item-slant"></div>
               <div class="item-label">
@@ -36,8 +34,9 @@
                   <a th:href="${post.status.permalink}" th:text="${post.spec.title}"></a>
                 </div>
                 <div class="item-meta clearfix">
-                  <div class="item-meta-ico bg-ico-<@fun.showBgIco post.id />"
-                    style="background: url(${theme_base!}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;">
+                  <!-- icon  -->
+                  <div class="item-meta-ico" :class="`bg-ico-${randomIcon()}`"
+                    th:style="|background: url(@{/assets/images/bg-ico.png}) no-repeat;background-size: 40px auto;|">
                   </div>
                   <div class="item-meta-cat">
                     <th:block th:if="${ not #lists.isEmpty(post.categories)}">
@@ -57,7 +56,7 @@
                 <div th:if="not ${#strings.isEmpty(post.spec.cover)}" class="onelist-item-thumb"
                   th:style="|background-image:url(${post.spec.cover});|"></div>
                 <div class="onelist-item-thumb" th:if="${#strings.isEmpty(post.spec.cover)}"
-                  th:style="|background-image:url(${theme.config.style.cover_image});|">
+                  :class="`${post_color?` bg-${randomColor()}`:'bg-deepgrey'}`">
                 </div>
               </a>
               <div class="onelist-item-info">
@@ -75,8 +74,7 @@
                   </th:block>
                   </a>
                 </div>
-                <div
-                  class="item-meta-hr <#if !settings.post_color!false> bg-deepgrey<#else >bg-<@fun.randBgColor/></#if>">
+                <div class="item-meta-hr " :class="`${post_color? `bg-${randomColor()}`:'bg-deepgrey'}`">
                 </div>
                 <div class="item-content">
                   <p th:text="${post.status.excerpt}"></p>

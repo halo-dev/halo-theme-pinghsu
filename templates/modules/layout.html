@@ -7,12 +7,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
   <title th:text="${title}"></title>
   <link rel="stylesheet" th:href="@{/assets/css/style.min.css}" />
+  <th:block th:if="${theme.config.general.dns}">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="dns-prefetch" href="//cdnjs.loli.net" />
+    <link rel="dns-prefetch" href="//gravatar.loli.net" />
+  </th:block>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <th:block th:if="${theme.config.style.post_toc}">
+    <script src="https://cdn.jsdelivr.net/npm/headroom.js@0.9.1/dist/headroom.min.js"></script>
+  </th:block>
+  <th:block th:if="${theme.config.style.post_highlight}">
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+  </th:block>
+  <th:block th:if="${theme.config.general.pjax}">
+    <script src="https://cdn.jsdelivr.net/npm/instantclick@3.1.0-2/dist/instantclick.min.js"></script>
+  </th:block>
 </head>
 
 <body>
   <script>
     document.addEventListener('alpine:init', () => {
+
       Alpine.data("pagination", (page, totalPages, totalVisible) => ({
         page: page,
         totalPages: totalPages,
@@ -62,6 +77,27 @@
 
           return range;
         },
+      }))
+      Alpine.data("random", () => ({
+        randomIcon() {
+          const bgColor = ['book', 'game', 'note', 'chat', 'code', 'image', 'web', 'link', 'design', 'lock'];
+          return bgColor[Math.floor(Math.random() * bgColor.length)];
+        },
+        randomPostIcon(id) {
+          const bgColor = ['book', 'game', 'note', 'chat', 'code', 'image', 'web', 'link', 'design', 'lock'];
+          return
+        },
+        randomColor() {
+          const bgColor = ['blue', 'purple', 'green', 'yellow', 'red', 'orange']
+          console.log(
+            bgColor[Math.floor(Math.random() * bgColor.length)], 1
+          );
+          return bgColor[Math.floor(Math.random() * bgColor.length)];
+        },
+        randomImg() {
+          console.log(1);
+          return Math.floor(Math.random() * 10) + '.jpg'
+        }
       }))
     })
   </script>

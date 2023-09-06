@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(title = null,content = ~{::content})}">
 <th:block th:fragment="content">
-  <div class="main-content common-page clearfix">
+  <div class="main-content common-page clearfix" x-data="random">
     <div class="common-item">
       <div class="common-title">
         Category : <th:block th:text="${category.spec.displayName}"></th:block>
@@ -9,13 +9,14 @@
       <div class="post-lists">
         <div class="post-lists-body">
           <th:block th:if="${not #lists.isEmpty(posts.items)}">
-            <div class="post-list-item" th:each="post : ${posts}">
-              <div class="post-list-item-container <#if settings.post_color!false>bg-<@fun.randBgColor/></#if>">
-                <div class="item-label <#if settings.post_color!false>bg-<@fun.randBgColor/></#if>">
+            <div class="post-list-item" th:each="post : ${posts}"
+              th:attr="x-data=|{post_color: ${theme.config.style.post_color}}|">
+              <div class="post-list-item-container " :class="`${post_color ? `bg-${randomColor()}`:''}`">
+                <div class="item-label" :class="`${post_color ? `bg-${randomColor()}`:''}`">
                   <div class="item-title"><a th:href="${post.status.permalink}" th:text="${post.spec.title}"></a></div>
                   <div class="item-meta clearfix">
-                    <div class="item-meta-ico bg-ico-<@fun.randBgIco/>"
-                      style="background: url(${theme_base!}/source/images/bg-ico.png) no-repeat;background-size: 40px auto;">
+                    <div class="item-meta-ico" :class="`bg-ico-${randomIcon()}`"
+                      th:style="|background: url(@{/assets/images/bg-ico.png}) no-repeat;background-size: 40px auto;|">
                     </div>
                     <div class="item-meta-date">
                       <th:block th:text="${#dates.format( post.metadata.creationTimestamp, 'yyyy年MM月dd日')}">

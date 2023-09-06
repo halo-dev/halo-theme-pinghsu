@@ -49,11 +49,6 @@ spec:
               label: 三栏
             - value: one
               label: 单栏
-        - $formkit: attachment
-          accepts:
-            - "image/*"
-          name: cover_image
-          label: 默认文章封面
         - $formkit: radio
           name: post_color
           label: 文章色块设置
