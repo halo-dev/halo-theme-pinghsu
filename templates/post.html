@@ -108,7 +108,11 @@
         </div>
 
         <div style="padding: 20px 0; border-top: 1px solid #e0e0e0;">评论:</div>
-        <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}" colorScheme="'light'" />
+        <div class="halo-comment">
+          <halo:comment group="content.halo.run" kind="Post" th:attr="name=${post.metadata.name}"
+            colorScheme="'light'" />
+        </div>
+
       </article>
       <div id="post-bottom-bar" class="post-bottom-bar">
         <div class="bottom-bar-inner">
@@ -269,7 +273,7 @@
     });
     postDirectory.init();
   </script>
-  <th:block th:if="${ not theme.config.general.pjax && theme.config.style.post_highlight}">
+  <th:block th:if="${ theme.config.style.post_highlight}">
     <script>
       hljs.initHighlightingOnLoad();
     </script>

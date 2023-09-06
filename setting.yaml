@@ -11,15 +11,6 @@ spec:
           name: footer_logo
           label: 页尾 logo
         - $formkit: radio
-          name: pjax
-          label: PJAX 加速设置
-          value: true
-          options:
-            - value: true
-              label: 开启
-            - value: false
-              label: 关闭
-        - $formkit: radio
           name: dns
           label: DNS 预解析加速
           value: true
