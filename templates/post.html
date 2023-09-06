@@ -138,7 +138,8 @@
             </span>
             <!-- 这个要添加什么配置 -->
             <span class="bottom-bar-item bottom-bar-qrcode">
-              <a th:href="|//pan.baidu.com/share/qrcode?w=300&amp;h=300&amp;url=${#strings.substring(site.url,0,#strings.length(site.url)-1)}${post.status.permalink}|"
+              <a th:href="
+              |https://api.qrserver.com/v1/create-qr-code/?data=${#strings.substring(site.url,0,#strings.length(site.url)-1)}${post.status.permalink}&size=300x300|"
                 target="_blank" rel="nofollow">
                 QRcode
               </a>
