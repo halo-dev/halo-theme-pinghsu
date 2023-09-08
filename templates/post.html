@@ -262,7 +262,6 @@
   <script>
     const target = document.getElementById("directory-content")
     const isPictrue = target.getAttribute("data-picture")
-    console.log(isPictrue === "true");
     var postDirectory = new Headroom(target, {
       tolerance: 0,
       offset: isPictrue === "true" ? 280 : 70,
