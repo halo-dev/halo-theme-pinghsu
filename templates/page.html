@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+    th:replace="~{modules/layout :: html(title = | ${singlePage.spec.title} |,content = ~{::content})}">
+<th:block th:fragment="content">
+    <article class="main-content page-page">
+        <div class="post-header">
+            <h1 class="post-title" itemprop="name headline" th:text="${singlePage.spec.title}">
+            </h1>
+            <div class="post-data">
+                <time datetime="${singlePage.metadata.creationTimestamp}" itemprop="datePublished">Published on
+                    <th:block th:text="${#dates.format(singlePage.metadata.creationTimestamp, 'YYYY年MM月dd日')}">
+                    </th:block>
+                </time>
+            </div>
+        </div>
+        <div id="post-content" class="post-content">
+            <th:block th:utext="${singlePage.content.content}"></th:block>
+        </div>
+    </article>
+</th:block>
+
+</html>
