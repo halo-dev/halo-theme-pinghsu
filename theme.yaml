@@ -13,5 +13,5 @@ spec:
   repo: "https://github.com/halo-dev/halo-theme-pinghsu"
   settingName: "theme-pinghsu-setting"
   configMapName: "theme-pinghsu-configMap"
-  version: "1.0"
+  version: "2.0.0"
   require: ">=2.0.0"
