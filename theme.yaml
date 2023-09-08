@@ -10,7 +10,7 @@ spec:
   description: Halo 2.0 Theme for pinghsu
   logo: "https://halo.run/logo"
   website: "https://github.com/halo-dev/halo-theme-pinghsu"
-  repo: "https://github.com/halo-dev/halo-theme-pinghsu"
+  repo: "https://github.com/halo-dev/halo-theme-pinghsu.git"
   settingName: "theme-pinghsu-setting"
   configMapName: "theme-pinghsu-configMap"
   version: "2.0.0"
