@@ -3,15 +3,15 @@ kind: Theme
 metadata:
   name: halo-theme-pinghsu
 spec:
-  displayName: Theme Pinghsu@next
+  displayName: Pinghsu
   author:
-    name: Hilary Liu
-    website: "https://halo.run"
+    name: Chakhsu.Lau
+    website: "https://www.linpx.com"
   description: Halo 2.0 Theme for pinghsu
   logo: "https://halo.run/logo"
-  website: "https://halo.run"
-  repo: "https://github.com/halo-sigs/theme-starter"
+  website: "https://github.com/halo-dev/halo-theme-pinghsu"
+  repo: "https://github.com/halo-dev/halo-theme-pinghsu"
   settingName: "theme-pinghsu-setting"
   configMapName: "theme-pinghsu-configMap"
   version: "1.0"
-  require: ">2.0"
+  require: ">=2.0.0"
