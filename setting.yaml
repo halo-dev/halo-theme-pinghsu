@@ -67,15 +67,6 @@ spec:
               label: 开启
             - value: false
               label: 关闭
-        - $formkit: radio
-          name: post_highlight
-          label: 代码高亮设置
-          value: true
-          options:
-            - value: true
-              label: 开启
-            - value: false
-              label: 关闭
     - group: sns
       label: 社交资料设置
       formSchema:
