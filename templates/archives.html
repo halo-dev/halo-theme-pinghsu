@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: html(title = |归档 - ${site.title}|,content = ~{::content})}"
+>
+  <th:block th:fragment="content">
+    <div
+      class="main-content archive-page clearfix"
+      th:with="archives = ${postFinder.archives(1, 999999)}"
+      th:attr="x-data=|{post_color: ${theme.config.style.post_color}}|"
+    >
+      <th:block th:each="archive : ${archives.items}">
+        <div class="categorys-item" x-data="random">
+          <div class="categorys-title" th:text="${archive.year}"></div>
+          <div class="post-lists">
+            <th:block th:each="month : ${archive.months}">
+              <div class="post-lists-body">
+                <div class="post-list-item" th:each="post : ${month.posts}">
+                  <div
+                    class="post-list-item-container"
+                    :class="`${post_color ? `bg-${randomColor()}`:'bg-white'}`"
+                  >
+                    <div class="item-label">
+                      <div class="item-title">
+                        <a
+                          th:href="${post.status.permalink}"
+                          th:text="${post.spec.title}"
+                        ></a>
+                      </div>
+                      <div class="item-meta clearfix">
+                        <div class="item-meta-date">
+                          <th:block
+                            th:text="${#dates.format( post.spec.publishTime, 'yyyy年MM月dd日')}"
+                          >
+                          </th:block>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </th:block>
+          </div>
+        </div>
+      </th:block>
+    </div>
+  </th:block>
+</html>

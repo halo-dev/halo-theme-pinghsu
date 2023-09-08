@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: html(title = | 链接 |,content = ~{::content})}"
+>
+  <th:block th:fragment="content">
+    <article class="main-content page-page">
+      <div class="post-header">
+        <h1 class="post-title" itemprop="name headline">Links</h1>
+      </div>
+      <div id="post-content" class="post-content">
+        <th:block
+          th:if="${#lists.size(groups) != 1}"
+          th:each="group : ${groups}"
+        >
+          <th:block th:if="${ not #strings.isEmpty(group.spec.displayName)}">
+            <h2 th:text="${group.spec.displayName}"></h2>
+            <ul class="flinks">
+              <th:block th:if="${ not #lists.isEmpty(group.links)}">
+                <li th:each="link : ${group.links}" :key="i">
+                  🔒
+                  <a
+                    th:href="${link.spec.url}"
+                    target="_blank"
+                    th:text="${link.spec.displayName}"
+                  ></a>
+                </li>
+              </th:block>
+              <th:block th:if="${#lists.isEmpty(group.links)}">
+                <p>该组别下没有任何链接</p>
+              </th:block>
+            </ul>
+          </th:block>
+        </th:block>
+      </div>
+    </article>
+  </th:block>
+</html>
